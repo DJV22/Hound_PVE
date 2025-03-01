@@ -16,11 +16,11 @@ with 96GB of Ram, (2) 4.0 TB SSD. The end result being a usable homelab in which
 3. Setup Repositories
 
 # IP Configuration for HoundLab (my Homelab)
-  Domain / Router - 10.0.0.1
-  Houndlab (PVE) - 10.0.0.2
-  DNS (PI.HOLE) - 10.0.0.3
-  FileServer - 10.0.0.4
-  Website - 10.0.0.50
+  1. Domain / Router - 10.0.0.1
+  2. Houndlab (PVE) - 10.0.0.2
+  3. DNS (PI.HOLE) - 10.0.0.3
+  4. FileServer - 10.0.0.4
+  5. Website - 10.0.0.50
   
 # Milestones
 
