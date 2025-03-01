@@ -9,5 +9,18 @@ The task is to use [Proxmox](https://www.proxmox.com/en/) on a [UM890
 Pro](https://store.minisforum.com/products/minisforum-um890pro?_pos=1&_sid=b97dfcda4&_ss=r)
 with 96GB of Ram, (2) 4.0 TB SSD. The end result being a usable homelab in which  a website, Fileserver, Home automation, and gameservers can be kept and managed for personal use.
 
+
+# Outline
+1. Download latest version of Proxmox and flash ISO onto a USB stick for installation.
+2. Complete the install selecting your desired format and setup. I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
+3. Setup Repositories
+
+# IP Configuration for HoundLab (my Homelab)
+  Domain / Router - 10.0.0.1
+  Houndlab (PVE) - 10.0.0.2
+  DNS (PI.HOLE) - 10.0.0.3
+  FileServer - 10.0.0.4
+  Website - 10.0.0.50
+  
 # Milestones
 
