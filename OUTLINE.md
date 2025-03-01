@@ -13,7 +13,13 @@ with 96GB of Ram, (2) 4.0 TB SSD. The end result being a usable homelab in which
 # Outline
 1. Download latest version of Proxmox and flash ISO onto a USB stick for installation.
 2. Complete the install selecting your desired format and setup. I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
-3. Setup Repositories
+3. Setup Repositories - I chose to g with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
+  a. The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
+   disable 
+       Enterprise ceph-quincy
+   Enable
+       no subsription ceph-quincy
+       no subscription ceph-reef
 
 # IP Configuration for HoundLab (my Homelab)
   1. Domain / Router - 10.0.0.1
