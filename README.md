@@ -24,7 +24,7 @@
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
 
-2. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
+4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
       - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
       - verify the configuration is as it should be by clicking show cnfiguration button.
@@ -45,26 +45,8 @@
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
 
-
-   3. Install git with `sudo apt install git -y`
-   4. Check the [howto](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
-      for information on setting up your git account on your server, if you need.
-   5. gpg is already installed, you must to add your private key and configure according
-   to another [howto](https://aalonso.dev/blog/2022/how-to-generate-gpg-keys-sign-commits-and-export-keys-to-another-machine)
-   on the \<adminuser\> account[^4].
-   6. A local \<adminuser\> "git" repository needs made for this documentation as well as the
-      scripts for performing further setup to simplify fresh installations[^6]. Create the
-      directory for this and other git "projects," clone the script site, and change to that
-      directory. Keep in mind, if you are not using SSH Key forwarding (such as when using the
-      built-in shell window of the web GUI), it won't work. SSH into this with key forwarding!
-      ```
-      mkdir -p ~/projects && cd ~/projects && git clone git@github.com:Romaq/bigrig-scripts.git
-      cd ~/projects/bigrig-scripts/bigrig-scripts
-      ```
-
 5. Set domain name using https://www.dynu.com (optional if fixed IP)
-   
-    1. Run `sudo ./DynuSetup.sh`  
+       1. Run `sudo ./DynuSetup.sh`  
        Answer the following questions for Dynu:  
        1. Dynamic DNS service provider: *other*  
        2. Dynamic DNS update protocol: *dyndns2*  
