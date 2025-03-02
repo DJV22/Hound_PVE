@@ -63,9 +63,23 @@
    - The configuration file should be at /usr/share/dynu-ip-update-client/appsettings.json location.
       - sudo nano /usr/share/dynu-ip-update-client/appsettings.json
     
+- Ensure the service is running and returns a good status with the commands below
+   - Commands
+   - Manage the service using systemd:
+      - sudo systemctl status dynu-ip-update-client.service
+      - sudo systemctl start dynu-ip-update-client.service
+      - sudo systemctl stop dynu-ip-update-client.service
+      - sudo systemctl restart dynu-ip-update-client.service
+   
+   - To view log files:
+      - View live log: journalctl -u dynu-ip-update-client.service --no-pager -f
+      - View entire log file: journalctl -u dynu-ip-update-client.service
+      - View service status: sudo systemctl status dynu-ip-update-client.service -l
+    
 ***
 appsettings.json  [view code here](../main/appsettings.json) 
 ***
+
 7. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
 
 8. Prepare the zfs storage tank.
