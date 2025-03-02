@@ -64,7 +64,7 @@
       - sudo nano /usr/share/dynu-ip-update-client/appsettings.json
     
 ***
-appsettings.json [view code here](../main/appsettings.json) 
+appsettings.json  [view code here](../main/appsettings.json) 
 ***
 7. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
 
