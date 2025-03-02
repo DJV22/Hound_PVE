@@ -1,6 +1,19 @@
 # Milestones
 
-1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
+Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
+   1.	Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
+   2.	Complete the install selecting your desired format and setup. 
+      a.	I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
+   3.	Setup Repositories 
+      a.	I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
+   4.	The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
+      a.	Disable
+         i.	Enterprise ceph-quincy
+      b.	Enable
+         i.	no subscription ceph-quincy
+         ii.	no subscription ceph-reef
+   5.	Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
+      a.	This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
 
 2. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
 
