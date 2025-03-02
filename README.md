@@ -46,19 +46,18 @@
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
 
 5. Set domain name using https://www.dynu.com (optional if fixed IP)
-       1. Run `sudo ./DynuSetup.sh`  
-       Answer the following questions for Dynu:  
-       1. Dynamic DNS service provider: *other*  
-       2. Dynamic DNS update protocol: *dyndns2*  
-       3. Dynamic DNS server: *api.dynu.com*  
-       4. Username: \<your-dynu-user-name\>  
-       5. Password: \<your-dynu-password\>  
-       6. Re-enter password: \<your-dynu-password\>  
-       7. IP address discovery method: *Web-based IP discovery service*[^5]  
-       8. Hosts to update: \< example.com, www.example.com \>  
-    2. When the script completes, verify an update to [the Dynu Control Panel](https://www.dynu.com/en-US/ControlPanel/DDNS),
-    then confirm the update on the Proxmox host using `sudo journalctl -u ddclient`
-
+   - Run `sudo ./DynuSetup.sh`
+      - Answer the following questions for Dynu:
+      - Dynamic DNS service provider: *other*
+      - Dynamic DNS update protocol: *dyndns2*
+      - Dynamic DNS server: *api.dynu.com*
+      - Username: \<your-dynu-user-name\>
+      - Password: \<your-dynu-password\>
+      - Re-enter password: \<your-dynu-password\>
+      - IP address discovery method: *Web-based IP discovery service*[^5]
+      - Hosts to update: \< example.com, www.example.com \>
+   - When the script completes, verify an update to [the Dynu Control Panel](https://www.dynu.com/en-US/ControlPanel/DDNS), then confirm the update on the Proxmox host using `sudo journalctl -u ddclient`
+   
 6. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
 
 7. Prepare the zfs storage tank.
