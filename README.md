@@ -23,6 +23,26 @@
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
 
 2. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
+   - If restoring from a backup of a previous install follow these steps
+      - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
+      - verify the configuration is as it should be by clicking show cnfiguration button.
+      - once you are satisfied it is correct clock Retore and select start on restore.
+   - If creating a new appliance for DNS follow these steps
+     - There is a [howto](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/) on installing
+      Pi-Hole into a Proxmox container. Reference notes follow.
+      - [TKL Core](https://www.turnkeylinux.org/core) is used consistent with other TKL templates.
+      - A name of "DNS" dictates what the machine is and does primarily.
+      - I am using 8 GiB for disk space, 2 Cores, 512 MiB of memory. These values can be changed and updated as required
+      as determined by practical use.
+      - Logging in at the console, obvious configuations should be entered as obvious (e.g. your email address).
+      - After the reboot, log back in.
+      - `apt update && apt upgrade` would be next.
+      - The "Postfix Configuration" window will come up, presuming no postfix configuation files are present. Select
+         "Local only", then use your FQDN as the domain name.
+      - This [howto] explains how to set up
+         - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
+      - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
+   
 
 2. With reference to this [howto](https://forum.proxmox.com/threads/add-pam-user-to-pve-admin-group.87036/),
    invoke the following:
