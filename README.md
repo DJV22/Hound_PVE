@@ -4,7 +4,9 @@
    - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
    - Complete the install selecting your desired format and setup.
    - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
-   - Setup Repositories
+
+2. Prepare for on-going maintenance  
+   - Setup Repositories: Repositories need to be set for "no subscription" according to the relevant [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
    - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
    - The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
       - Disable
@@ -14,9 +16,9 @@
          * no subscription ceph-reef
    - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
       - This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
-    
-   - If you need to import your previous ZFS pool you must use the following shell commands after ensuring teh drives are connected and available.
-      - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
+
+3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring teh drives are connected and available.
+   - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
    * On Datacenter:Storage use the Add button and select Directory.
    * Give it an ID of "tank" and the directory is /tank/vz. The Shared: box should be off, as there are no additional nodes in this setup.
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
@@ -42,24 +44,8 @@
       - This [howto] explains how to set up
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
-   
 
-2. With reference to this [howto](https://forum.proxmox.com/threads/add-pam-user-to-pve-admin-group.87036/),
-   invoke the following:
-   ```
-   pveum user add <user>@pam
-   pveum user list
-   pveum acl modify / --roles PVEAdmin --users <user>@pam
-   ```
-3. Lock down the server with the firewall[^3].
-   This is through the PVE Web, Datacenter:firewall/options, select "Firewall" on the right-side panel and
-   the "edit" button above that. Select the "Firewall" checkbox on the pop-up and "ok."
 
-4. Prepare for on-going maintenance  
-   1. Repositories need to be set for "no subscription" according to the relevant
-   [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
-   Both GUI and CLI options are provided on the page.
-   2. The system will need an `sudo apt update -y && sudo apt upgrade -y` command, of course.
    3. Install git with `sudo apt install git -y`
    4. Check the [howto](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
       for information on setting up your git account on your server, if you need.
