@@ -1,19 +1,19 @@
 # Milestones
 
-Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
-   1.	Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
-   2.	Complete the install selecting your desired format and setup.
-      1. I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
-   4.	Setup Repositories 
-      1. I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
-   5.	The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
-      1.	Disable
-         i.	Enterprise ceph-quincy
-      2.	Enable
-         i.	no subscription ceph-quincy
-         ii.	no subscription ceph-reef
-   6.	Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
-      1.	This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
+1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
+   - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
+   - Complete the install selecting your desired format and setup.
+   - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
+   - Setup Repositories
+   - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
+   - The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
+      - Disable
+        * Enterprise ceph-quincy
+      - Enable
+         * no subscription ceph-quincy
+         * no subscription ceph-reef
+   - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
+      - This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
 
 2. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
 
