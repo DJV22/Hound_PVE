@@ -44,28 +44,37 @@
       - This [howto] explains how to set up
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
+        
+5. Set the PVE's IP using https://www.dynu.com. This is done to direct the Domain to the correct system. (optional if fixed IP)
+   * IP update client for Linux runs as a system service (systemd) and supports IPv4 and IPv6 updates. Users can use the group feature to update a specific collection of hostnames.
+- Installation
+   - Please note that IP update client for Linux requires .NET Core 6.0. Use the following commands based on the Linux distribution to install the IP update client software.
+      - Debian 12 (.deb file)
+         - wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+         - dpkg -i packages-microsoft-prod.deb
+         - rm packages-microsoft-prod.deb
+         - apt update
+         - apt install dotnet-runtime-6.0
+         - wget --trust-server-names https://www.dynu.com/support/downloadfile/67
+         - apt install ./dynu-ip-update-client_1.0.1-1_amd64.deb
+- Configuration
+   - Please check the man page for documentation.
+      - man dynu-ip-update-client
+   - The configuration file should be at /usr/share/dynu-ip-update-client/appsettings.json location.
+      - sudo nano /usr/share/dynu-ip-update-client/appsettings.json
+    
+***
+Insert code here
+***
+  
+7. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
 
-5. Set domain name using https://www.dynu.com (optional if fixed IP)
-   - Run `sudo ./DynuSetup.sh`
-      - Answer the following questions for Dynu:
-      - Dynamic DNS service provider: *other*
-      - Dynamic DNS update protocol: *dyndns2*
-      - Dynamic DNS server: *api.dynu.com*
-      - Username: \<your-dynu-user-name\>
-      - Password: \<your-dynu-password\>
-      - Re-enter password: \<your-dynu-password\>
-      - IP address discovery method: *Web-based IP discovery service*[^5]
-      - Hosts to update: \< example.com, www.example.com \>
-   - When the script completes, verify an update to [the Dynu Control Panel](https://www.dynu.com/en-US/ControlPanel/DDNS), then confirm the update on the Proxmox host using `sudo journalctl -u ddclient`
-   
-6. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
-
-7. Prepare the zfs storage tank.
+8. Prepare the zfs storage tank.
    1. Within the GUI, use `Datacenter/<host>:Disks/ZFS` and click the "Create: ZFS" button.
    2. Use "tank" for the name, "Add Storage: [X]", RAID Level: RAIDZ, Compression: on, ashift 12, select all 5 SATA drives,
       then the "Create" button. This "tank" is already mounted as `/tank` at the root.
    3. ~~Install Ceph through the PVE (Note: be sure to select the "No Subscription" repository!)~~
-8. Download .iso files to the storage tank.
+9. Download .iso files to the storage tank.
 
 # Footnotes
 [^1]: Proxmox Virtual Environment, usually but not necessarily the web
