@@ -81,13 +81,40 @@ appsettings.json  [view code here](../main/appsettings.json)
 ***
 
 7. Set up email notifications per the [howto](https://www.naturalborncoder.com/linux/2023/05/19/setting-up-email-notifications-in-proxmox-using-gmail).
+  - Datacentre > Options double click Email from address and set to something with a valid domain such as pve@naturalborncoder.com
+  -  Emails will, by default, go to the root user so they need to have a valid email address (while you’re at it give all the users a valid email address). To set this go to Datacenter > Permissions > Users and then double click the root user. The user edit box will open where you can set an email.
+  -  apt update
+  -  apt install -y libsasl2-modules mailutils
+  -  genereate app password on google account
+  -  cd /etc/postfix
+  -  nano sasl_passwd
+    
+  -  smtp.gmail.com example@gmail.com:password
+  -  nano /etc/postfix/main.cf
+  -  relayhost = smtp.gmail.com:587
+  -  smtp_use_tls = yes
+  -  smtp_sasl_auth_enable = yes
+  -  smtp_sasl_security_options =
+  -  smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+  -  smtp_tls_CAfile = /etc/ssl/certs/Entrust_Root_Certification_Authority.pem
+  -  smtp_tls_session_cache_database = btree:/var/lib/postfix/smtp_tls_session_cache
+  -  smtp_tls_session_cache_timeout = 3600s
+  
+  -  postfix reload
 
-8. Prepare the zfs storage tank.
+  - echo "Test Email" | mail -s "Test Subject" example@gmail.com
+  - echo "Test email from Proxmox: $(hostname)" | /usr/bin/proxmox-mail-forward
+
+  - If the email arrives then congratulations you have set up the Proxmox email system. It’s probably worth taking a quick look at the system logs just to check everything looks good. These can be found from the command line or Datacenter > [Host] > System > Syslog.
+
+  - 
+
+9. Prepare the zfs storage tank.
    1. Within the GUI, use `Datacenter/<host>:Disks/ZFS` and click the "Create: ZFS" button.
    2. Use "tank" for the name, "Add Storage: [X]", RAID Level: RAIDZ, Compression: on, ashift 12, select all 5 SATA drives,
       then the "Create" button. This "tank" is already mounted as `/tank` at the root.
    3. ~~Install Ceph through the PVE (Note: be sure to select the "No Subscription" repository!)~~
-9. Download .iso files to the storage tank.
+10. Download .iso files to the storage tank.
 
 # Footnotes
 [^1]: Proxmox Virtual Environment, usually but not necessarily the web
