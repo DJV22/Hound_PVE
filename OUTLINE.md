@@ -20,6 +20,7 @@ with 96GB of Ram, (2) 4.0 TB SSD. The end result being a usable homelab in which
    Enable
        no subsription ceph-quincy
        no subscription ceph-reef
+ 4. update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. This should prompt for all the latest updates. Then when TASK ok show in the pop up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
 
 # IP Configuration for HoundLab (my Homelab)
   1. Domain / Router - 10.0.0.1
