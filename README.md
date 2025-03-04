@@ -30,15 +30,10 @@
       - verify the configuration is as it should be by clicking show cnfiguration button.
       - once you are satisfied it is correct clock Retore and select start on restore.
    - If creating a new appliance for DNS follow these steps
-     - There is a [howto](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/) on installing
-      Pi-Hole into a Proxmox container. Reference notes follow.
-      - [TKL Core](https://www.turnkeylinux.org/core) is used consistent with other TKL templates.
-      - A name of "DNS" dictates what the machine is and does primarily.
-      - I am using 8 GiB for disk space, 2 Cores, 512 MiB of memory. These values can be changed and updated as required
-      as determined by practical use.
-      - Logging in at the console, obvious configuations should be entered as obvious (e.g. your email address).
+      - Create a Debian LXC Container with the following settings
+         - hostname = "dns", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
       - After the reboot, log back in.
-      - `apt update && apt upgrade` would be next.
+      - Update using 'apt update && apt upgrade'
       - The "Postfix Configuration" window will come up, presuming no postfix configuation files are present. Select
          "Local only", then use your FQDN as the domain name.
       - This [howto] explains how to set up
