@@ -31,11 +31,12 @@
       - once you are satisfied it is correct clock Retore and select start on restore.
    - If creating a new appliance for DNS follow these steps
       - Create a Debian LXC Container with the following settings
-         - hostname = "dns", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
+         - hostname = "DNS", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
       - After the reboot, log back in.
-      - Update using 'apt update && apt upgrade'
-      - The "Postfix Configuration" window will come up, presuming no postfix configuation files are present. Select
-         "Local only", then use your FQDN as the domain name.
+      - Update using 'apt update && apt upgrade -y'
+      - Install curl using 'apt install curl -y'
+      - curl -sSL https://install.pi-hole.net | bash
+  
       - This [howto] explains how to set up
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
