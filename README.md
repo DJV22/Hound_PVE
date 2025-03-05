@@ -33,7 +33,7 @@
    - If creating a new appliance for DNS follow these steps
       - Create a Debian LXC Container with the following settings
          - hostname = "DNS", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
-      - After the reboot, log back in.
+      - After the reboot, log back in. make sure network information is correct (Mac address, ip and gateway)
       - Update using 'apt update && apt upgrade -y'
       - Install curl using 'apt install curl -y'
       - curl -sSL https://install.pi-hole.net | bash
