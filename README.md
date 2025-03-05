@@ -16,6 +16,7 @@
          * no subscription ceph-reef
    - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
       - This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
+      - Now update the PVE appliance templates list by forcing the update. Use the foloowing command "pveam update" in the shell. See link for further information of possible future changes. https://forum.proxmox.com/threads/howto-update-of-appliance-templates.1074/
 
 3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
    - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
