@@ -41,6 +41,10 @@
       - This [howto] explains how to set up
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
       - Pi.hole does an excellent job configuring itself but after the install and configuring your DHCP to provide dns as the primary DNS host, it is wise to reboot all of the machines to be using DNS for that purpose.
+    
+      - Alter the DNS Settings for Proxmox
+         - Select the server you want to modify in the left menu and then System > DNS in the middle menu. Update as required. Note that this settings just changes the file /etc/resolv.conf.
+         - Change /etc/resolve.conf to the following "search local"
         
 5. Set the PVE's IP using https://www.dynu.com. This is done to direct the Domain to the correct system. (optional if fixed IP)
    * IP update client for Linux runs as a system service (systemd) and supports IPv4 and IPv6 updates. Users can use the group feature to update a specific collection of hostnames.
