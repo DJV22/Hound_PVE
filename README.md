@@ -48,6 +48,8 @@
        
       - Update pihole with the following console command "pihole -up"
       - set password for pihole bi using the following command in console "pihole setpasswrod NEWPASSWORDHERE"
+    
+   - SEtup Automatially boot for DNS options and start order should be 1
         
 5. Set the PVE's IP using https://www.dynu.com. This is done to direct the Domain to the correct system. (optional if fixed IP)
    * IP update client for Linux runs as a system service (systemd) and supports IPv4 and IPv6 updates. Users can use the group feature to update a specific collection of hostnames.
