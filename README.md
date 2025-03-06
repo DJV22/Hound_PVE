@@ -56,24 +56,19 @@
    - create container using the following settings
       - hostname = "fileserver", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
    - Create the following zfs datasets on PVE
-      - for host specific use, including host "internal" backups. Becomes /tank on the client.
-      ```
-      zfs create -p tank/fileserver/tub
-      ```
-      - for the initial setup of permissions. This will be corrected later.
-      ```
-      chmod 777 /tank/fileserver/tub 
-      ```
-      - as a home folder for client users on the network.
-      ```- zfs create -p tank/fileserver/home 
-      ```
-      - 
-      ```
-      chmod 777 /tank/fileserver/home
+      - zfs create -p tank/fileserver/tub for host specific use, including host "internal" backups. Becomes /tank on the client.
+      - chmod 777 /tank/fileserver/tub for the initial setup of permissions. This will be corrected later.
+      - zfs create -p tank/fileserver/home as a home folder for client users on the network.
+      - chmod 777 /tank/fileserver/home
       - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
       - chmod 777 /tank/fileserver/share
       - #zfs create -p rpool/fileserver/share is not created as this time, but may be useful if "fast" sharing is required. The amount of space for this purpose would be significantly smaller, and is considered an edge use case at this time.
-      ```
+      - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
+      
+      - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
+      - pct set 101 -mp0 /tank/fileserver/home,mp=/home
+      - pct set 101 -mp0 /tank/fileserver/share,mp=/share
+
    - test
 
 
