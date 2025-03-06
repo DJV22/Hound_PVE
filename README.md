@@ -57,11 +57,14 @@
       - hostname = "fileserver", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
    - Create the following zfs datasets on PVE
       ```
-      - zfs create -p tank/fileserver/tub for host specific use, including host "internal" backups. Becomes /tank on the client.
+      - zfs create -p tank/fileserver/tub
       ```
+      for host specific use, including host "internal" backups. Becomes /tank on the client.
       ```
-      - chmod 777 /tank/fileserver/tub for the initial setup of permissions. This will be corrected later.
+      - chmod 777 /tank/fileserver/tub 
       ```
+      for the initial setup of permissions. This will be corrected later.
+     
       ```- zfs create -p tank/fileserver/home as a home folder for client users on the network.
       ```
       ```
