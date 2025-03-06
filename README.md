@@ -67,7 +67,10 @@
    - Start the fileserver container to create it and completed the install
       -  create a samba password and complete the prompts in order to finish
       -  BE SURE TO SAVE INFORMATION WHEN CONTAINER COMPLETED (IP, ADDRESSES)
-      -  set region data and any other relevant information. 
+      -  set region data and any other relevant information.
+      -  reboot appliance
+      -  apt update && apt upgrade -y
+      -  
       
       
       - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
