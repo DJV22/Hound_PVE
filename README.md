@@ -72,13 +72,11 @@
       -  apt update && apt upgrade -y
       -  postfix configuration - ma ilsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
-         - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
+         - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
             - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
-            - pct set 101 -mp0 /tank/fileserver/home,mp=/home
-            - pct set 101 -mp0 /tank/fileserver/share,mp=/share
+            - pct set 101 -mp1 /tank/fileserver/home,mp=/home
+            - pct set 101 -mp2 /tank/fileserver/share,mp=/share
           
-      Might need to do these steps - mkdir tank 
-
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
    - Select cdrom and Delete Selected Shares.
