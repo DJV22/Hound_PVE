@@ -71,14 +71,11 @@
       -  reboot appliance
       -  apt update && apt upgrade -y
       -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
-      -  
-      
-      
-      - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
-      
-      - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
-      - pct set 101 -mp0 /tank/fileserver/home,mp=/home
-      - pct set 101 -mp0 /tank/fileserver/share,mp=/share
+      -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
+         - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
+            - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
+            - pct set 101 -mp0 /tank/fileserver/home,mp=/home
+            - pct set 101 -mp0 /tank/fileserver/share,mp=/share
 
    - test
 
