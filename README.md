@@ -63,6 +63,13 @@
       - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
       - chmod 777 /tank/fileserver/share
       - #zfs create -p rpool/fileserver/share is not created as this time, but may be useful if "fast" sharing is required. The amount of space for this purpose would be significantly smaller, and is considered an edge use case at this time.
+
+   - Start the fileserver container to create it and completed the install
+      -  create a samba password and complete the prompts in order to finish
+      -  BE SURE TO SAVE INFORMATION WHEN CONTAINER COMPLETED (IP, ADDRESSES)
+      -  set region data and any other relevant information. 
+      
+      
       - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
       
       - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
