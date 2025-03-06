@@ -51,8 +51,7 @@
     
    - Setup Automatially boot for DNS options and start order should be 1
         
-5. 
-***
-appsettings.json  [view code here](../main/appsettings.json) 
-***
+5. Fileserver Creation
+   - 
 
+6. 
