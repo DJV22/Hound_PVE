@@ -70,6 +70,7 @@
       -  set region data and any other relevant information.
       -  reboot appliance
       -  apt update && apt upgrade -y
+      -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
       -  
       
       
