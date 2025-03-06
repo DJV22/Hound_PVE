@@ -70,14 +70,25 @@
       -  set region data and any other relevant information.
       -  reboot appliance
       -  apt update && apt upgrade -y
-      -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
+      -  postfix configuration - ma ilsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1:
             - pct set 101 -mp0 /tank/fileserver/tub,mp=/tank
             - pct set 101 -mp0 /tank/fileserver/home,mp=/home
             - pct set 101 -mp0 /tank/fileserver/share,mp=/share
+          
+      Might need to do these steps - mkdir tank 
 
-   - test
-
-
+   - Use your browser to connect to the GUI.
+   - We will now prepare the offered Samba shares. Go to the Samba configuration
+   - Select cdrom and Delete Selected Shares.
+   - The "homes" sharing will actually be split between "tub" for host only and "home" for user only when added as functional "users" and attached as SMB clients. The "share" the only folder specific for managed sharing between multiple hosts and users depending upon need and policy. So the "homes" share we will leave as is.
+   - Select storage and the configuration page will appear.
+   - Rename storage to share, and change the "Directory to share" to /share, then Save.
+   - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selecting the Create a new user button.
+      - Example crafthound user is created here
+   - Enter "bob" for the username and give it a password which will match the SMB password in later steps. For the "Home directory," allow it to use "Automatic" which will default to /home.
+   - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
+   - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
+   - 
 6. 
