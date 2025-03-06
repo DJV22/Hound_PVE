@@ -33,4 +33,9 @@ with 96GB of Ram, (2) 4.0 TB SSD. The end result being a usable homelab in which
   5. Website - 10.0.0.50
   
 # Milestones
-
+1. PVE
+2. DNS
+3. FILE SERVER
+4. ARM SERVER
+5. WEB SERVER
+6. GAME SERVERS
