@@ -49,39 +49,9 @@
       - Update pihole with the following console command "pihole -up"
       - set password for pihole bi using the following command in console "pihole setpasswrod NEWPASSWORDHERE"
     
-   - SEtup Automatially boot for DNS options and start order should be 1
+   - Setup Automatially boot for DNS options and start order should be 1
         
-5. Set the PVE's IP using https://www.dynu.com. This is done to direct the Domain to the correct system. (optional if fixed IP)
-   * IP update client for Linux runs as a system service (systemd) and supports IPv4 and IPv6 updates. Users can use the group feature to update a specific collection of hostnames.
-- Installation
-   - Please note that IP update client for Linux requires .NET Core 6.0. Use the following commands based on the Linux distribution to install the IP update client software.
-      - Debian 12 (.deb file)
-         - wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-         - dpkg -i packages-microsoft-prod.deb
-         - rm packages-microsoft-prod.deb
-         - apt update
-         - apt install dotnet-runtime-6.0
-         - wget --trust-server-names https://www.dynu.com/support/downloadfile/67
-         - apt install ./dynu-ip-update-client_1.0.1-1_amd64.deb
-- Configuration
-   - Please check the man page for documentation.
-      - man dynu-ip-update-client
-   - The configuration file should be at /usr/share/dynu-ip-update-client/appsettings.json location.
-      - sudo nano /usr/share/dynu-ip-update-client/appsettings.json
-    
-- Ensure the service is running and returns a good status with the commands below
-   - Commands
-   - Manage the service using systemd:
-      - sudo systemctl status dynu-ip-update-client.service
-      - sudo systemctl start dynu-ip-update-client.service
-      - sudo systemctl stop dynu-ip-update-client.service
-      - sudo systemctl restart dynu-ip-update-client.service
-   
-   - To view log files:
-      - View live log: journalctl -u dynu-ip-update-client.service --no-pager -f
-      - View entire log file: journalctl -u dynu-ip-update-client.service
-      - View service status: sudo systemctl status dynu-ip-update-client.service -l
-    
+5. 
 ***
 appsettings.json  [view code here](../main/appsettings.json) 
 ***
