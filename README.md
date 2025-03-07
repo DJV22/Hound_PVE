@@ -90,6 +90,7 @@
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
    - 
 6. Gameserver creation
+   - Decide on a container ID
    - Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
    - good practice to have a template based on initial design for ease of creating on the fly
    - Using a turnkey LXC template for gameserver use the following settings
@@ -118,7 +119,11 @@
    -  mkdir -p ~/Downloads && cd Downloads
    -  Having moved the file in there, I follow the directions including tracing down which version of Java is actually running so java -version returns openjdk version "22.0.1" 2024-04-16. This is an exercise best left to the user, although I can provide help as needed, perhaps clarify here.
    -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
-  
-7.
-8. - 
-9. 
+
+8. -
+
+9. -
+
+10. -
+
+11. - 
