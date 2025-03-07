@@ -136,6 +136,6 @@ SEtup Automatially boot for DNS options and start order should be 1
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
   
-4. ARM SERVER
+4. MEDIA SERVER
 5. WEB SERVER
 6. GAME SERVERS
