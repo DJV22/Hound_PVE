@@ -25,7 +25,19 @@
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
 
-4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
+4. SECURE TUNNELING THROUGH SSH
+   - In the Shell of your PVE machine as "root" do the following
+   - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
+   - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
+      - Include /etc/ssh/sshd_config.d/*.conf
+   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
+      -  PermitRootLogin no
+      -  PasswordAuthentication no
+      -  PermitTunnel yes
+   - Save changes and restart ssh service with the following command
+      - `systemctl restart ssh`
+      - 
+5. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
       - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
       - verify the configuration is as it should be by clicking show cnfiguration button.
@@ -51,7 +63,7 @@
     
    - Setup Automatially boot for DNS options and start order should be 1
         
-5. Fileserver Creation
+6. Fileserver Creation
    - DownnloadLXC Fileserver template
    - create container using the following settings
       - hostname = "fileserver", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
@@ -89,22 +101,12 @@
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
    - 
-6. SECURE TUNNELING THROUGH SSH
-   - In the Shell of your PVE machine as "root" do the following
-   - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
-   - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
-      - Include /etc/ssh/sshd_config.d/*.conf
-   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
-      -  PermitRootLogin no
-      -  PasswordAuthentication no
-      -  PermitTunnel yes
-   - Save changes and restart ssh service with the following command
-      - `systemctl restart ssh`
-      - 
+7. -
+   - 
 
-7. 
+8. 
 
-8. Gameserver creation
+9. Gameserver creation
    - Decide on a container ID
    - Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
    - good practice to have a template based on initial design for ease of creating on the fly
@@ -136,10 +138,5 @@
    -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
    
-9. - 
-
-10. -
-
-11. -
-
-12. - 
+10. 
+11.  
