@@ -112,7 +112,7 @@
    -  cd gameserver puts you in the right directory. You do not need to use ./linuxgsm.sh, you already did that in the console configuration.
    -  ./mcserver brings up a menu of options. You can use the 1-3 letter combination to select from the options offered, such as ./mcserver dt to see current details about the game.
    -  ./mcserver st returns an error: "[ FAIL ] Starting mcserver: Unable to start Whimpercraft"
-   -  Now would be a good time to make a snapshot before making changes so you can return to this configuration. To do this, go back to Datacenter/pve/whimpercraft:Backup, then select the "Bacup now" button. The defaults are fine, just use the "Backup" button offered.
+   -  Now would be a good time to make a snapshot before making changes so you can return to this configuration. To do this, go back to Datacenter/pve/whimpercraft:Backup, then select the "Bacup now" button. The defaults are fine, just use the "Backup" button offered
    -  With that safely in hand, we can explore changes and roll them back to this save point as needed.
    -  Depending on the game server, you may have to ask questions for help outside the scope of this tutorial. In this case, ~/gamesever/log/console shows the current Java is not up to date with this version of minecraft. According to the Minecraft Wiki, the current release of Minecraft uses Java 21. This will prevent the server from working, as the installed java is 17, and a default package is not available to update at this time.
    -  A debian package for Java21 is not currently available to me, so I will follow the instructions on the howto for that.
@@ -120,10 +120,26 @@
    -  Having moved the file in there, I follow the directions including tracing down which version of Java is actually running so java -version returns openjdk version "22.0.1" 2024-04-16. This is an exercise best left to the user, although I can provide help as needed, perhaps clarify here.
    -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
-8. -
+7. SECURE TUNNELING THROUGH SSH
+   - In the Shell of your PVE machine as "root" do the following
+   - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
+   - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
+      - Include /etc/ssh/sshd_config.d/*.conf
+   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
+      -  PermitRootLogin no
+      -  PasswordAuthentication no
+      -  PermitTunnel yes
+   -  save changes and restart ssh service with the following command
+      - `systemctl restart ssh`
+      - 
 
-9. -
+
+8. 
+   
+9. - 
 
 10. -
 
-11. - 
+11. -
+
+12. - 
