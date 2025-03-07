@@ -89,7 +89,22 @@
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
    - 
-6. Gameserver creation
+6. SECURE TUNNELING THROUGH SSH
+   - In the Shell of your PVE machine as "root" do the following
+   - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
+   - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
+      - Include /etc/ssh/sshd_config.d/*.conf
+   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
+      -  PermitRootLogin no
+      -  PasswordAuthentication no
+      -  PermitTunnel yes
+   - Save changes and restart ssh service with the following command
+      - `systemctl restart ssh`
+      - 
+
+7. 
+
+8. Gameserver creation
    - Decide on a container ID
    - Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
    - good practice to have a template based on initial design for ease of creating on the fly
@@ -120,21 +135,6 @@
    -  Having moved the file in there, I follow the directions including tracing down which version of Java is actually running so java -version returns openjdk version "22.0.1" 2024-04-16. This is an exercise best left to the user, although I can provide help as needed, perhaps clarify here.
    -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
-7. SECURE TUNNELING THROUGH SSH
-   - In the Shell of your PVE machine as "root" do the following
-   - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
-   - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
-      - Include /etc/ssh/sshd_config.d/*.conf
-   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
-      -  PermitRootLogin no
-      -  PasswordAuthentication no
-      -  PermitTunnel yes
-   -  save changes and restart ssh service with the following command
-      - `systemctl restart ssh`
-      - 
-
-
-8. 
    
 9. - 
 
