@@ -99,6 +99,12 @@
    - Rename storage to share, and change the "Directory to share" to /share, then Save.
    - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selecting the Create a new user button.
       - Example crafthound user is created here
+      - Create known users
+         - crafthound
+         - tootsie
+         - djshadow
+         - mediaserver
+         - 
    - Enter "bob" for the username and give it a password which will match the SMB password in later steps. For the "Home directory," allow it to use "Automatic" which will default to /home.
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
@@ -149,7 +155,8 @@
          - Confirm and save Media Server appliance services
          - configure advanced Menu items as needed
             - I confiugred Region Settings, mail relay settings
-            - 
+       
+         - Make usre to create a user `mediaserver` in fileserver samba webadmin
 
 9. Gameserver creation
    - Decide on a container ID
