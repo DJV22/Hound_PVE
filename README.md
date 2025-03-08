@@ -131,7 +131,25 @@
   - Setup options for webserver container
      - `automatially boot yes`
      - `start order should be 3`
-8. 
+8. MEDIA SERVER
+   - Create a container with the following settings
+      - ID - 103, Hostname - mediaserver, Insert Password and SSH Key,
+      - Select Template - I will be using TurnKey LXC Media Server
+      - size 32 GB, 2 cores, 2048 memory, 1024 swap
+      - Enter Network information (MAC address, Static IP, Gateway, and DNS)
+      - Confirm all settings and create container
+   - Once the container is created and Task show OK Start the container
+   - in the console of the mediaserver container login as root
+      - Follow all prompts being sure to document user accounts created through these steps
+         - Samba root account
+         - Jellyfin user account
+         - Initialize API Key - skip this step
+         - Security alerts - enter email information
+         - Install Security updates
+         - Confirm and save Media Server appliance services
+         - configure advanced Menu items as needed
+            - I confiugred Region Settings, mail relay settings
+            - 
 
 9. Gameserver creation
    - Decide on a container ID
