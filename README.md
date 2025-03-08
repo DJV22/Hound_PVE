@@ -155,19 +155,26 @@
          - Confirm and save Media Server appliance services
          - configure advanced Menu items as needed
             - I confiugred Region Settings, mail relay settings
+          
+            - reboot and update appliance
        
          - Make sure to create a user `mediaserver` in fileserver samba webadmin
        
          - change file storage location by doing the following on media server console
             - mkdir -p ~/tmp
             - copy existing storage directory and contents to tmp directory with the following command from the tmp directory
-               - `cp -av /srv/storage` - verify changes `ls -la`
+               - `cp -av /srv/storage .` - verify changes `ls -la`
             - remove storage directory with following command
                - `cd /srv`
                - `rm -Rvf storage/`
             - then make storage directory again
                - `mkdir storage`
-            - 
+            - install cifs-utils with command `apt-get install cifs-utils`
+            - update container using `apt update && apt upgrade -y`
+            - mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o user=mediaserver
+            - verify mounts with command `mount`
+          
+            - properly set and test permissions for auto mounting  
 
 9. Gameserver creation
    - Decide on a container ID
