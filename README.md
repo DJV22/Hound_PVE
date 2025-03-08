@@ -158,10 +158,10 @@
        
          - Make sure to create a user `mediaserver` in fileserver samba webadmin
        
-         - change file storage location by doing the folowing on media server console
+         - change file storage location by doing the following on media server console
             - mkdir -p ~/tmp
             - copy existing storage directory and contents to tmp directory with the following command from the tmp directory
-               - `cp -Av /srv/storage` - verify changes `ls -la`
+               - `cp -av /srv/storage` - verify changes `ls -la`
             - remove storage directory with following command
                - `cd /srv`
                - `rm -Rvf storage/`
