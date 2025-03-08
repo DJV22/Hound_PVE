@@ -113,8 +113,20 @@
       - ID - 102, Hostname - webserver, Insert Password and SSH Key,
       - Select Template - I will be using TurnKey WordPress version (18.2) at the time of installation.
       - size 32 GB, 2 cores, 1024 memory, 1024 swap
-      - Enter Network information
+      - Enter Network information (MAC address, Static IP, Gateway)
       - Confirma settings and create container
+   - After intstallation reboot container and login to console as root
+      - complete installation by following prompts
+      - 
+      - ensure passwords are secure and are unique
+      - after following prompts enter domain name information and confirm ip settings
+      - after information is verified you can add advanced menu items
+      - install lets encrypt
+         - follow prompts
+         - get certificate
+         - toggle renew certificate to enable
+         - save settings and reboot
+    
       - 
   - Setup options for webserver container
      - `automatially boot yes`
