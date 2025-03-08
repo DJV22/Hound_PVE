@@ -156,7 +156,7 @@
          - configure advanced Menu items as needed
             - I confiugred Region Settings, mail relay settings
        
-         - Make usre to create a user `mediaserver` in fileserver samba webadmin
+         - Make sure to create a user `mediaserver` in fileserver samba webadmin
        
          - change file storage location by doing the folowing on media server console
             - mkdir -p ~/tmp
