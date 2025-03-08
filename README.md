@@ -157,6 +157,17 @@
             - I confiugred Region Settings, mail relay settings
        
          - Make usre to create a user `mediaserver` in fileserver samba webadmin
+       
+         - change file storage location by doing the folowing on media server console
+            - mkdir -p ~/tmp
+            - copy existing storage directory and contents to tmp directory with the following command from the tmp directory
+               - `cp -Av /srv/storage` - verify changes `ls -la`
+            - remove storage directory with following command
+               - `cd /srv`
+               - `rm -Rvf storage/`
+            - then make storage directory again
+               - `mkdir storage`
+            - 
 
 9. Gameserver creation
    - Decide on a container ID
@@ -187,7 +198,7 @@
    -  A debian package for Java21 is not currently available to me, so I will follow the instructions on the howto for that.
    -  mkdir -p ~/Downloads && cd Downloads
    -  Having moved the file in there, I follow the directions including tracing down which version of Java is actually running so java -version returns openjdk version "22.0.1" 2024-04-16. This is an exercise best left to the user, although I can provide help as needed, perhaps clarify here.
-   -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
+   -  The server will run at this point, but I neto follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
    
 10. SET options for booting after restart and boot order for each container / virtual machine
