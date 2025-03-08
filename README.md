@@ -61,7 +61,9 @@
       - Update pihole with the following console command "pihole -up"
       - set password for pihole bi using the following command in console "pihole setpasswrod NEWPASSWORDHERE"
     
-   - Setup Automatially boot for DNS options and start order should be 1
+  - Setup options for dns container
+     - `automatially boot yes`
+     - `start order should be 1`
         
 6. Fileserver Creation
    - DownnloadLXC Fileserver template
@@ -100,10 +102,23 @@
    - Enter "bob" for the username and give it a password which will match the SMB password in later steps. For the "Home directory," allow it to use "Automatic" which will default to /home.
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
    - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
-   - Setup Automatially boot for fileserver options and start order should be 2
-7. -
-   - 
+  - Setup options for fileserver container
+     - `automatially boot yes`
+     - `start order should be 2`
 
+7. WEB SERVER CREATION
+   - Download your selected template and save it to "tank"
+   - Create container in PVE using gui. `Create CT`
+   - I used the following setting while creating container
+      - ID - 102, Hostname - webserver, Insert Password and SSH Key,
+      - Select Template - I will be using TurnKey WordPress version (18.2) at the time of installation.
+      - size 32 GB, 2 cores, 1024 memory, 1024 swap
+      - Enter Network information
+      - Confirma settings and create container
+      - 
+  - Setup options for webserver container
+     - `automatially boot yes`
+     - `start order should be 3`
 8. 
 
 9. Gameserver creation
@@ -138,5 +153,6 @@
    -  The server will run at this point, but I need to follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
    
-10. 
-11.  
+10. SET options for booting after restart and boot order for each container / virtual machine
+11. 
+12.  
