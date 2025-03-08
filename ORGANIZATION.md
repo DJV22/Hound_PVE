@@ -30,6 +30,9 @@ Outlines of Approaches to System Organization
       Gameservers, potential VMWare Windows machines, any other container of interest. It must be isolated so as not
       to potentially harm any other system on the network.
 
+100 system - service type items
+200 virtual machines (react, vdesktop)
+500 - games / servers
 ## Fileserver Organization
    1. PVE has direct access to and provides the support of "storage" as defined in "Datacenter-Storage".
       * PVE will store data on the root SSD that benefit from speed, but is *not* consider protected from drive failure:
