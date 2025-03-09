@@ -5,4 +5,4 @@ Task
 
 - a
 1. setup ubuntu desktop vm spice
- - a
+ - `Palworld` a
