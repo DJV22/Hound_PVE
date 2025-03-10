@@ -177,7 +177,9 @@
             - verify mounts with command `mount`
             - Copy files from `~/tmp/storage` back to `/srv/storage` use the following command to copy all files and permissions
                - `cp -av ~/tmp/storage .` this is done from the `/srv` location
-            - 
+      DO THIS after reboot and verify notes
+
+      - pct set 103 -mp0 /tank/fileserver/home/mediaserver,mp=/srv/storage
             - verify c
             - `mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o credentials=/etc/security/smbcredentials`
           
