@@ -179,6 +179,7 @@
                - `cp -av ~/tmp/storage .` this is done from the `/srv` location
             - 
             - verify c
+            - `mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o credentials=/etc/security/smbcredentials`
           
             - properly set and test permissions for auto mounting  
 
