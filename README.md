@@ -146,7 +146,7 @@
          - toggle renew certificate to enable
          - save settings and reboot
     
-      - 
+      - create local dns record webserver.local - dedicated ip (10.0.0.50)
   - Setup options for webserver container
      - `automatially boot yes`
      - `start order should be 3`
