@@ -230,4 +230,5 @@
    
 10. SET options for booting after restart and boot order for each container / virtual machine
 11. 
-12.  
+12.  confconsole commmand gets us to advanced menu in container
+13.  
