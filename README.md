@@ -11,14 +11,15 @@
    - The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
       - Disable
         * Enterprise ceph-quincy
+        * pve-enterprise
       - Enable
          * no subscription ceph-quincy
          * no subscription ceph-reef
    - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages. 
       - This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
-      - Now update the PVE appliance templates list by forcing the update. Use the foloowing command "pveam update" in the shell. See link for further information of possible future changes. https://forum.proxmox.com/threads/howto-update-of-appliance-templates.1074/
-      - install unzip
-      - 
+      - Now update the PVE appliance templates list by forcing the update. Use the following command `pveam update` in the shell. See link for further information of possible future changes. https://forum.proxmox.com/threads/howto-update-of-appliance-templates.1074/
+      - install unzip `apt install unzip`
+      - install sudo `apt install sudo`
 
 3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
    - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
@@ -26,6 +27,8 @@
    * Give it an ID of "tank" and the directory is /tank/vz. The Shared: box should be off, as there are no additional nodes in this setup.
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
+   * local-zfs pool should only have disk mage and containers.
+   * 
 
 4. SECURE TUNNELING THROUGH SSH
    - In the Shell of your PVE machine as "root" do the following
@@ -38,7 +41,15 @@
       -  PermitTunnel yes
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
-      - 
+
+    
+      - create user for loggin into ssh with the following commands
+         - `adduser crafthound` and follow prompts
+         -   add crafthound to the sudo group with the following command
+         -   `usermod -aG sudo crafthound
+         -   add you key to authorized keys file
+       
+         -   
 5. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
       - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
