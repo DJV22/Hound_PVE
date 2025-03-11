@@ -133,7 +133,7 @@
       - Select Template - I will be using TurnKey WordPress version (18.2) at the time of installation.
       - size 32 GB, 2 cores, 1024 memory, 1024 swap
       - Enter Network information (MAC address, Static IP, Gateway)
-      - Confirma settings and create container
+      - Confirm settings and create container
    - After intstallation reboot container and login to console as root
       - complete installation by following prompts
       - 
