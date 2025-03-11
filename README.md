@@ -107,7 +107,7 @@
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
    - Select cdrom and Delete Selected Shares.
-   - The "homes" sharing will actually be split between "tub" for host only and "home" for user only when added as functional "users" and attached as SMB clients. The "share" the only folder specific for managed sharing between multiple hosts and users depending upon need and policy. So the "homes" share we will leave as is.
+   - 
    - Select storage and the configuration page will appear.
    - Rename storage to share, and change the "Directory to share" to /share, then Save.
    - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selecting the Create a new user button.
