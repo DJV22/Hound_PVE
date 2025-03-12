@@ -157,6 +157,7 @@
       - size 32 GB, 2 cores, 2048 memory, 1024 swap
       - Enter Network information (MAC address, Static IP, Gateway, and DNS)
       - Confirm all settings and create container
+      - goto options on pve dashboard for mediaserver container and set start at boot yes boot order 4
    - Once the container is created and Task show OK Start the container
    - in the console of the mediaserver container login as root
       - Follow all prompts being sure to document user accounts created through these steps
