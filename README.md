@@ -140,7 +140,7 @@
       - ensure passwords are secure and are unique
       - after following prompts enter domain name information and confirm ip settings
       - after information is verified you can add advanced menu items
-      - install lets encrypt
+      - install lets encrypt following the advanced menu (`conconsole` command in shell if closed advanced menu) 
          - follow prompts
          - get certificate
          - toggle renew certificate to enable
