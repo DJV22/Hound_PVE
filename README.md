@@ -54,6 +54,7 @@
          -   `usermod -aG sudo crafthound
          -   add you key to authorized keys file
        
+         -   do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
          -   
 5. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
