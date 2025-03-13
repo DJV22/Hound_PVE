@@ -42,6 +42,10 @@
       -  PermitTunnel yes
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
+      - edit bashrc file to allow for color and alias
+      - `nano .bashrc`
+      - make appropriate changes and save file
+      - reload bash with `source .bashrc` command
 
     
       - create user for loggin into ssh with the following commands
