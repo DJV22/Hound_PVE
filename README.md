@@ -124,7 +124,7 @@
          - crafthound
          - tootsie
          - djshadow
-         - mediaserver
+         - May not be needed - mediaserver
          - 
    - Enter "bob" for the username and give it a password which will match the SMB password in later steps. For the "Home directory," allow it to use "Automatic" which will default to /home.
    - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
@@ -180,7 +180,7 @@
           
             - reboot and update appliance
        
-         - Make sure to create a user `mediaserver` in fileserver samba webadmin
+         - May not be needed - Make sure to create a user `mediaserver` in fileserver samba webadmin
        
          - change file storage location by doing the following on media server console
             - mkdir -p ~/tmp
