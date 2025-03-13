@@ -95,6 +95,8 @@
       - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
       - chmod 777 /tank/fileserver/share
       - #zfs create -p rpool/fileserver/share is not created as this time, but may be useful if "fast" sharing is required. The amount of space for this purpose would be significantly smaller, and is considered an edge use case at this time.
+      - NOTE - that this should be 2770 for tighter security permissions with proper uid to be determined later
+      - 
 
    - Start the fileserver container to create it and completed the install
       -  create a samba password and complete the prompts in order to finish
