@@ -77,7 +77,7 @@
          - Change /etc/resolve.conf to the following "search local"
        
       - Update pihole with the following console command "pihole -up"
-      - set password for pihole bi using the following command in console "pihole setpasswrod NEWPASSWORDHERE"
+      - set password for pihole bi using the following command in console "pihole setpassword NEWPASSWORDHERE"
     
   - Setup options for dns container
      - `automatially boot yes`
