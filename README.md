@@ -183,14 +183,24 @@
          - May not be needed - Make sure to create a user `mediaserver` in fileserver samba webadmin
        
          - change file storage location by doing the following on media server console
-            - mkdir -p ~/tmp
-            - copy existing storage directory and contents to tmp directory with the following command from the tmp directory
+            - mkdir -p ~/temp
+            - copy existing storage directory and contents to temp directory with the following command from the temp directory
                - `cp -av /srv/storage .` - verify changes `ls -la`
             - remove storage directory with following command
                - `cd /srv`
                - `rm -Rvf storage/`
             - then make storage directory again
                - `mkdir storage`
+               - then change group to `users` with the command `chgrp users storage/`
+               - then change permissions with `chmod 1775` to match previous permissions allowing users to write in directory the leading 1 means only individual owner can delete files
+               - then shutdown mediaserver container and create mount point with the following command on the PVE console
+               - `pct set 103 -mp0 /tank/fileserver/home/mediaserver,mp=/srv/storage`
+               - then verify by checking resources on mediaserver contaner match the changes above
+               - then restart container
+               - 
+            
+            
+            
             - install cifs-utils with command `apt-get install cifs-utils`
             - update container using `apt update && apt upgrade -y`
             - mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o user=mediaserver
