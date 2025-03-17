@@ -83,7 +83,10 @@
 6. Fileserver Creation
    - DownnloadLXC Fileserver template
    - create container using the following settings
-      - hostname = "fileserver", 32GB storage, 2 cores, 2048 mem, 1024 swap `0ld config - 8 GiB for disk space, 2 Cores, 1024 MiB of memory`
+      - hostname = "fileserver",
+      - 32GB storage, 2 cores, 2048 mem, 1024 swap
+      - `0ld config - 8 GiB for disk space, 2 Cores, 1024 MiB of memory`
+      - 
 
    - Create the following zfs datasets on PVE
 
@@ -103,7 +106,7 @@
       -  set region data and any other relevant information.
       -  reboot appliance
       -  apt update && apt upgrade -y
-      -  postfix configuration - ma ilsetup select no configuration because issues with gmail proxy
+      -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
             - pct set 101 -mp0 /tank/fileserver/mediaserver,mp=/srv/storage
@@ -122,16 +125,15 @@
          - crafthound
          - tootsie
          - djshadow
-         - May not be needed - mediaserver
-         - 
-   - Enter "bob" for the username and give it a password which will match the SMB password in later steps. For the "Home directory," allow it to use "Automatic" which will default to /home.
-   - For the "Primary Group," select "New group with same name as user" and add "users" as the Seconary Group. Be sure to select the "right arrow" button to move this to the "In groups" panel.
-   - The defaults should be fine, but the ideal policy is, "don't add or change anything you do not have to." Permissions should be planned such that "users" group projects, "client" machine projects and such can be protected at this level.
-  - Setup options for fileserver container
+         - # May not be needed - mediaserver
+         -
+   - Setup options for fileserver container
      - `automatially boot yes`
      - `start order should be 2`
---------
-testing new way of doing Fileserver
+---------------------------------------------------------------
+7. Installing Jellyfin - testing new way of doing Fileserver
+   - goto `(https://jellyfin.org/docs/general/installation/linux)`
+   - 
 
 - Create new container using the mediaserver template
    - 2 cores 32GB storage, 2048 Mem, 1024 swap
