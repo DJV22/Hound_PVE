@@ -132,7 +132,7 @@
      - `start order should be 2`
 ---------------------------------------------------------------
 7. Installing Jellyfin - testing new way of doing Fileserver
-   - goto `(https://jellyfin.org/docs/general/installation/linux)`
+   - goto `https://jellyfin.org/docs/general/installation/linux`
    - 
 
 - Create new container using the mediaserver template
