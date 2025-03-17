@@ -130,8 +130,13 @@
    - Setup options for fileserver container
      - `automatially boot yes`
      - `start order should be 2`
+---------------------------------------------------------------    
+7. Installing Jellyfin - create container using template LXC Mediaserver
+   - apt update
+   - apt upgrade -y
+   - apt install jellyfin
 ---------------------------------------------------------------
-7. Installing Jellyfin - testing new way of doing Fileserver
+testing new way of doing Fileserver
 # did not work
    - goto https://jellyfin.org/docs/general/installation/linux specifically https://jellyfin.org/docs/general/installation/linux#repository-using-extrepo
       - `apt install extrepo`
