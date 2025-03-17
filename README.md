@@ -197,6 +197,18 @@
                - `pct set 103 -mp0 /tank/fileserver/home/mediaserver,mp=/srv/storage`
                - then verify by checking resources on mediaserver contaner match the changes above
                - then restart container
+               - Verify succesful restart
+               - Make sure to create user mediaserver in smb of mediaserver `[https://10.0.0.6:12321](https://10.0.0.6:12321/useradmin/edit_user.cgi?xnavigation=1)` with the following parameters
+                  - directory = srv/storage
+                  - user id matches fileserver userid 1003
+                  - existing group users
+                  - do not create home directory
+                  - do not copy template from home directory
+                  - do not create users in other modules
+                  - do the same for all existing using in fileserver smb so to avoid confusion (ex. crafthound, tootsie, djshadow)
+                  - verify changes on pve directory /tank.fileserver/home/mediaserver
+                  - remove and files not need with `rm -Rfv (files)
+                  - 
                - 
             
             
