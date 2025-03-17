@@ -143,7 +143,7 @@
       - `mkdir -p /etc/apt/keyrings`
       - `curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg`
       - `nano /etc/apt/sources.list.d/jellyfin.sources`
-      - copy code to jellyfin.sources file [jellyfin.sources]([https://website-name.com](https://github.com/DJV22/Hound_PVE/commit/47d46e2f30d1d519204b6ebbc56e0bfe8d3ed0a4))
+      - copy code to jellyfin.sources file [jellyfin.sources](https://github.com/DJV22/Hound_PVE/commit/47d46e2f30d1d519204b6ebbc56e0bfe8d3ed0a4)
 
 
 - Create new container using the mediaserver template
