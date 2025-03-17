@@ -215,26 +215,7 @@
                   -  available `yes`
                   -  browseable `yes`
             
-            
-            
-            - install cifs-utils with command `apt-get install cifs-utils`
-            - update container using `apt update && apt upgrade -y`
-            - mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o user=mediaserver
-            - verify mounts with command `mount`
-            - Copy files from `~/tmp/storage` back to `/srv/storage` use the following command to copy all files and permissions
-               - `cp -av ~/tmp/storage .` this is done from the `/srv` location
-      DO THIS after reboot and verify notes
-
-      - pct set 103 -mp0 /tank/fileserver/home/mediaserver,mp=/srv/storage
-            - verify c
-            - `mount -t cifs "//fileserver/mediaserver" /srv/storage --verbose -o credentials=/etc/security/smbcredentials`
-          
-            - properly set and test permissions for auto mounting
         - Make sure the users exist both on fileserver machine and mediaserver machine with the correct id #'s
-           - example Jellyfin (id 107) on mediaserver did not exist on fileserver and showed as id 107 in the ownership of directories and files
-           - once it was created on fileserver webadmn (https://fileserver.local:12321) all permissions synced up.
-           - DO NOT overwrite home, id #s and modify modules or this will cause conflicts.
-           - Edit the home directoy on fileserver webadmin to point to `/home/mediaserver`
            - 
 
 9. Gameserver creation
