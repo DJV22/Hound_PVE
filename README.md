@@ -132,7 +132,12 @@
   - Setup options for fileserver container
      - `automatially boot yes`
      - `start order should be 2`
+--------
+testing new way of doing jellyfin
 
+https://jellyfin.org/docs/general/installation/linux/
+
+--------
 7. WEB SERVER CREATION
    - Download your selected template and save it to "tank"
    - Create container in PVE using gui. `Create CT`
