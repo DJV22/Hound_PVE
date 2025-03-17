@@ -1,11 +1,12 @@
 # Milestones
-
+============================================================================================
 1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
    - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
    - Complete the install selecting your desired format and setup.
    - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
-   - pve.hsd1.pa.comcast.net
-
+   - pve.local
+============================================================================================
+============================================================================================
 2. Prepare for on-going maintenance  
    - Setup Repositories: Repositories need to be set for "no subscription" according to the relevant [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
    - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
@@ -21,17 +22,11 @@
       - Now update the PVE appliance templates list by forcing the update. Use the following command `pveam update` in the shell. See link for further information of possible future changes. https://forum.proxmox.com/threads/howto-update-of-appliance-templates.1074/
       - install unzip `apt install unzip`
       - install sudo `apt install sudo`
-
-3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
-   - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
-   * On Datacenter:Storage use the Add button and select Directory.
-   * Give it an ID of "tank" and the directory is /tank/vz. The Shared: box should be off, as there are no additional nodes in this setup.
-   * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
-   * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
-   * local-zfs pool should only have disk mage and containers.
-   * 
-
-4. SECURE TUNNELING THROUGH SSH
+      - edit bashrc file to allow for color and alias
+      - `nano .bashrc`
+      - make appropriate changes and save file
+      - reload bash with `source .bashrc` command
+   - SECURE TUNNELING THROUGH SSH
    - In the Shell of your PVE machine as "root" do the following
    - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
    - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
@@ -42,20 +37,26 @@
       -  PermitTunnel yes
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
-      - edit bashrc file to allow for color and alias
-      - `nano .bashrc`
-      - make appropriate changes and save file
-      - reload bash with `source .bashrc` command
+============================================================================================
+============================================================================================
+3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
+   - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
+   * On Datacenter:Storage use the Add button and select Directory.
+   * Give it an ID of "tank" and the directory is /tank/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+   * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
+   * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
+   * local-zfs pool should only have disk mage and containers.
+   * 
 
-    
+4.   
       - create user for loggin into ssh with the following commands
          - `adduser crafthound` and follow prompts
          -   add crafthound to the sudo group with the following command
-         -   `usermod -aG sudo crafthound
+         -   `usermod -aG sudo crafthound`
          -   add you key to authorized keys file
        
          -   do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
-         -   
+         
 5. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
       - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
