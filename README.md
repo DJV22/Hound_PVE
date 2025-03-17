@@ -138,7 +138,7 @@
    - goto https://jellyfin.org/docs/general/installation/linux#repository-manual
       - `apt install curl gnupg`
       - `add-apt-repository universe`
-         #  note If the above command fails you will need to install the following package software-properties-common. This can be achieved with the following command sudo apt-get install software-properties-common
+         - note If the above command fails you will need to install the following package software-properties-common. This can be achieved with the following command sudo apt-get install software-properties-common
       - `add-apt-repository non-free`
       - `mkdir -p /etc/apt/keyrings`
       - `curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg`
