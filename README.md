@@ -133,9 +133,12 @@
      - `automatially boot yes`
      - `start order should be 2`
 --------
-testing new way of doing jellyfin
+testing new way of doing jellyfin - shutdown backup created of fileserver in case a need to revert arises
 
 https://jellyfin.org/docs/general/installation/linux/
+
+- 
+- curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
 
 --------
 7. WEB SERVER CREATION
