@@ -52,15 +52,10 @@
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
    * local-zfs pool should only have disk mage and containers.
+
+   - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
 ---------------------------------------------------------------
-   
-
-4.   
-
-       
-         -   do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
-         
-5. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
+4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - If restoring from a backup of a previous install follow these steps
       - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
       - verify the configuration is as it should be by clicking show cnfiguration button.
