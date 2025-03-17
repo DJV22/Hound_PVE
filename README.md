@@ -209,7 +209,11 @@
                   - verify changes on pve directory /tank.fileserver/home/mediaserver
                   - remove and files not need with `rm -Rfv (files)
                   - 
-               - 
+               - create a new file share on `https://fileserver:12321/samba/?xnavigation=1` with the following parameters
+                  - name `mediaserver`
+                  -  directory to share `/home/mediaserver`
+                  -  available `yes`
+                  -  browseable `yes`
             
             
             
