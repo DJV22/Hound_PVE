@@ -38,6 +38,12 @@
       -  PermitTunnel yes
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
+      
+   - Create user for loggin into ssh with the following commands
+      - `adduser crafthound` and follow prompts
+      - add crafthound to the sudo group with the following command
+      - `usermod -aG sudo crafthound`
+      - add you key to authorized keys file
 ---------------------------------------------------------------
 3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
    - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
@@ -46,14 +52,11 @@
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
    * local-zfs pool should only have disk mage and containers.
-   * 
+---------------------------------------------------------------
+   
 
 4.   
-      - create user for loggin into ssh with the following commands
-         - `adduser crafthound` and follow prompts
-         -   add crafthound to the sudo group with the following command
-         -   `usermod -aG sudo crafthound`
-         -   add you key to authorized keys file
+
        
          -   do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
          
