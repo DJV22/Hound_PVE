@@ -83,7 +83,8 @@
 6. Fileserver Creation
    - DownnloadLXC Fileserver template
    - create container using the following settings
-      - hostname = "fileserver", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
+      - hostname = "fileserver", 32GB storage, 2 cores, 2048 mem, 1024 swap `0ld config - 8 GiB for disk space, 2 Cores, 1024 MiB of memory`
+
    - Create the following zfs datasets on PVE
 
       - zfs create -p tank/fileserver/home as a home folder for client users on the network.
