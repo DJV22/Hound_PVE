@@ -38,8 +38,7 @@
       -  PermitTunnel yes
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
-============================================================================================
-============================================================================================
+---------------------------------------------------------------
 3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
    - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
    * On Datacenter:Storage use the Add button and select Directory.
