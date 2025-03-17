@@ -1,13 +1,13 @@
 # Milestones
-============================================================
+
+---------------------------------------------------------------
 1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
    - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
    - Complete the install selecting your desired format and setup.
    - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
    - pve.local
 
-============================================================
-============================================================
+---------------------------------------------------------------
 2. Prepare for on-going maintenance  
    - Setup Repositories: Repositories need to be set for "no subscription" according to the relevant [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
    - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
