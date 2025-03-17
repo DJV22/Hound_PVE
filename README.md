@@ -56,11 +56,7 @@
    - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
 ---------------------------------------------------------------
 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
-   - If restoring from a backup of a previous install follow these steps
-      - locate the backup from your vzdump backup location, in this instance it will be in the tank pool.
-      - verify the configuration is as it should be by clicking show cnfiguration button.
-      - once you are satisfied it is correct clock Retore and select start on restore.
-   - If creating a new appliance for DNS follow these steps
+   - To create a DNS Server Appliance follow these steps
       - Create a Debian LXC Container with the following settings
          - hostname = "DNS", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
       - After the reboot, log back in. make sure network information is correct (Mac address, ip and gateway)
@@ -82,6 +78,7 @@
   - Setup options for dns container
      - `automatially boot yes`
      - `start order should be 1`
+---------------------------------------------------------------
         
 6. Fileserver Creation
    - DownnloadLXC Fileserver template
