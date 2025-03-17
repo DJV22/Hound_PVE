@@ -125,7 +125,7 @@
          - crafthound
          - tootsie
          - djshadow
-         - # May not be needed - mediaserver
+         - May not be needed - mediaserver
          -
    - Setup options for fileserver container
      - `automatially boot yes`
