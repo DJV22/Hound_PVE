@@ -134,7 +134,9 @@
 7. Installing Jellyfin - create container using template LXC Mediaserver
    -
    - https://www.youtube.com/watch?v=veyG-HbyC6A
-  
+   - bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/jellyfin.sh)"
+
+   -https://bit.ly/bbtw-proxmox-scripts
    - /tank/fileserver/home/mediaserver/Movies/
    - /tank/fileserver/home/mediaserver/Shows/
    - pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
