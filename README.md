@@ -132,6 +132,7 @@
      - `start order should be 2`
 ---------------------------------------------------------------
 7. Installing Jellyfin - testing new way of doing Fileserver
+# did not work
    - goto https://jellyfin.org/docs/general/installation/linux specifically https://jellyfin.org/docs/general/installation/linux#repository-using-extrepo
       - `apt install extrepo`
       - `extrepo enable jellyfin`
