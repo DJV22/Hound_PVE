@@ -132,9 +132,18 @@
      - `start order should be 2`
 ---------------------------------------------------------------    
 7. Installing Jellyfin - create container using template LXC Mediaserver
+   -
+   - https://www.youtube.com/watch?v=veyG-HbyC6A
+  
+   - /tank/fileserver/home/mediaserver/Movies/
+   - /tank/fileserver/home/mediaserver/Shows/
+   - pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
+   - pct set 103 -mp1 /tank/fileserver/home/mediaserver/Shows,mp=/data/shows
+   
+   
    - apt update
    - apt upgrade -y
-   - apt install jellyfin
+   - 
 ---------------------------------------------------------------
 testing new way of doing Fileserver
 # did not work
