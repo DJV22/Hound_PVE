@@ -89,15 +89,16 @@
    - create container using the following settings
       - hostname = "fileserver", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
    - Create the following zfs datasets on PVE
-      - zfs create -p tank/fileserver/mediaserver for host specific use, including host "internal" backups. Becomes /tank on the client.
-      - chmod 777 /tank/fileserver/mediaserver for the initial setup of permissions. This will be corrected later.
+
       - zfs create -p tank/fileserver/home as a home folder for client users on the network.
       - chmod 777 /tank/fileserver/home
       - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
       - chmod 777 /tank/fileserver/share
       - #zfs create -p rpool/fileserver/share is not created as this time, but may be useful if "fast" sharing is required. The amount of space for this purpose would be significantly smaller, and is considered an edge use case at this time.
       - NOTE - that this should be 2770 for tighter security permissions with proper uid to be determined later
-      - 
+      - zfs create -p tank/fileserver/mediaserver for host specific use, including host "internal" backups. Becomes /tank on the client.
+      - chmod 777 /tank/fileserver/mediaserver for the initial setup of permissions. This will be corrected later.
+      -  
 
    - Start the fileserver container to create it and completed the install
       -  create a samba password and complete the prompts in order to finish
@@ -108,7 +109,7 @@
       -  postfix configuration - ma ilsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
-            - pct set 101 -mp0 /tank/fileserver/mediaserver,mp=/tank
+            - pct set 101 -mp0 /tank/fileserver/mediaserver,mp=/srv/storage
             - pct set 101 -mp1 /tank/fileserver/home,mp=/home
             - pct set 101 -mp2 /tank/fileserver/share,mp=/share
           
@@ -133,9 +134,30 @@
      - `automatially boot yes`
      - `start order should be 2`
 --------
-testing new way of doing jellyfin - shutdown backup created of fileserver in case a need to revert arises
+testing new way of doing Fileserver
 
-https://jellyfin.org/docs/general/installation/linux/
+- Create new container using the mediaserver template
+   - 2 cores 32GB storage, 2048 Mem, 1024 swap
+   - after creating set options to restart after reboot yes and order = 3
+   - start container and login to console
+   - follow prompts
+      - create password for samba root user and jeelyfin user accounts
+      - skip api key insatllation
+      - enter email for security alerts
+      - install security updates
+      - configure advanced menu settings (confconsole) if need to revisit from console
+      - apt update && apt upgrade -y
+- make zfs datasets to be shared 
+   - zfs create -p tank/fileserver/home as a home folder for client users on the network.
+   - chmod 777 /tank/fileserver/home
+   - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
+   - chmod 777 /tank/fileserver/share
+   - zfs create -p tank/fileserver/mediaserver for the mediaserver specefic use
+   - chmod 777 /tank/fileserver/mediaserver for the initial setup of permissions. This will be corrected later.
+-  
+
+
+
 
 - 
 - curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
