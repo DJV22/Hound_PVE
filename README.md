@@ -52,6 +52,11 @@
    * Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
    * We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
    * local-zfs pool should only have disk mage and containers.
+  
+- Create Tub or Import as needed
+   - Goto PVE - ZFS on the right column, select crreate zfs from top right and complete information
+      - RaidZ config 3 20TB disk 1 parity 2 actual drives equaling 49TB of storage. If 1 disk fails you can recover data.
+      - name - media, compression on by default, ashift 12 bu default and Waid level RAIDZ     
 
    - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
 ---------------------------------------------------------------
@@ -139,8 +144,10 @@
    -https://bit.ly/bbtw-proxmox-scripts
    - /tank/fileserver/home/mediaserver/Movies/
    - /tank/fileserver/home/mediaserver/Shows/
-   - pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
-   - pct set 103 -mp1 /tank/fileserver/home/mediaserver/Shows,mp=/data/shows
+     THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE
+        REMOVED BY THE COMMAND BELOW- pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
+        REMOVED BY THE COMMAND BELOW- pct set 103 -mp1 /tank/fileserver/home/mediaserver/Shows,mp=/data/shows
+   USE THIS COMMAND - pct set 103 -mp0 /tank2/fileserver/mediaserver,mp=/data
    
    
    - apt update
