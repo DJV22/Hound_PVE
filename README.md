@@ -142,8 +142,10 @@
    - bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/jellyfin.sh)"
 
    -https://bit.ly/bbtw-proxmox-scripts
-   - /tank/fileserver/home/mediaserver/Movies/
-   - /tank/fileserver/home/mediaserver/Shows/
+   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE - /tank/fileserver/home/mediaserver/Movies/
+   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE - /tank/fileserver/home/mediaserver/Shows/
+   - /tank2/fileserver/mediaserver/Movies/
+   - /tank2/fileserver/mediaserver/Shows/
    
    - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE
       - REMOVED BY THE COMMAND BELOW- pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
