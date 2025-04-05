@@ -144,7 +144,8 @@
    -https://bit.ly/bbtw-proxmox-scripts
    - /tank/fileserver/home/mediaserver/Movies/
    - /tank/fileserver/home/mediaserver/Shows/
-     THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE
+   
+   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE
         REMOVED BY THE COMMAND BELOW- pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
         REMOVED BY THE COMMAND BELOW- pct set 103 -mp1 /tank/fileserver/home/mediaserver/Shows,mp=/data/shows
    USE THIS COMMAND - pct set 103 -mp0 /tank2/fileserver/mediaserver,mp=/data
