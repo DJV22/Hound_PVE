@@ -55,7 +55,7 @@
   
 - Create Tub or Import as needed
    - Goto PVE - ZFS on the right column, select crreate zfs from top right and complete information
-      - RaidZ config 3 20TB disk 1 parity 2 actual drives equaling 49TB of storage. If 1 disk fails you can recover data.
+      - RaidZ config 3 20TB disk 1 parity 2 actual drives equaling 40TB of storage. If 1 disk fails you can recover data.
       - name - media, compression on by default, ashift 12 bu default and Waid level RAIDZ     
 
    - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
