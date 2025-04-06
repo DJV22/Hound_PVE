@@ -93,6 +93,13 @@
       - Update using 'apt update && apt upgrade -y'
       - Install curl using 'apt install curl -y'
       - curl -sSL https://install.pi-hole.net | bash
+      - setup upstream DNS providers
+         - I used the following `75.75.75.75, 75.75.76.76`
+         - Allow third party list to block adds by selecting yes to include unified hosts list
+         - Select to allow query logging
+         - Select Show everything
+         - it will show you the information including password to login and how to change it
+         - SAVE THIS INFORMATION
   
       - This [howto] explains how to set up
          - [Pi-hole](https://www.naturalborncoder.com/2023/07/installing-pi-hole-on-proxmox/).
@@ -108,6 +115,14 @@
   - Setup options for dns container
      - `automatially boot yes`
      - `start order should be 1`
+   
+     - goto 10.0.0.3:80/admin
+     - login in using information provided during install
+     - goto setting on left column, all settings
+     - select Netowrk Time Sync tab and deselect all options and this will clear the warning.
+     - goto tools, update Gravity and update it
+     - you can add upstream DNS servers from the Settings tab, You should see the custom ones added at installation
+     - change dns domain setting to local from default lan
 ---------------------------------------------------------------
         
 6. Fileserver Creation
