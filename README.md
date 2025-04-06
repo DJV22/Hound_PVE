@@ -52,6 +52,8 @@
       -  PermitRootLogin no
       -  PasswordAuthentication no
       -  PermitTunnel yes
+   -  Add your key to the file location
+      - #AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2
    - Save changes and restart ssh service with the following command
       - `systemctl restart ssh`
       
