@@ -8,30 +8,30 @@
       - pve.local
 
 ---------------------------------------------------------------
-2. Prepare for on-going maintenance  
-   - Setup Repositories: Repositories need to be set for "no subscription" according to the relevant [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
-   - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
-   - The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
+ - [ ] 2. Prepare for on-going maintenance  
+    - Setup Repositories: Repositories need to be set for "no subscription" according to the relevant [howto](https://www.virtualizationhowto.com/2022/08/proxmox-update-no-subscription-repository-configuration/).
+    - I chose to go with the No Subscription route currently. This may change in the future so I may support the good people that made this possible.
+    - The following can be done by going to (PVE:Updates:Repositories) on the Right hand of the screen.
       - Disable
         * Enterprise ceph-quincy
         * pve-enterprise
       - Enable
          * no subscription ceph-quincy
          * no subscription ceph-reef
-- From the console of PVE
-   - change directories to:
-   - `cd /usr/share/javascript/proxmox-widget-toolkit`
-   - Make a backup
-   - cp proxmoxlib.js proxmoxlib.js.bak
-   - Then open the file in nano
-   - `nano proxmoxlib.js`
-   - While in nano use ctrl-w to search for "No valid subscription"
-   - `" .data.status.toLowerCase() !== 'active') {`
-   - now go to the ! before the == and delete it
-   - it should now look like `".data.status.toLowerCase() == 'active') {"`
-   - save the file ctrl-x and exit nano
-   - Restart the ProxMox service `systemctl restart pveproxy.service`
-   - Reload your browser tab and log back in
+   - From the console of PVE
+    - change directories to:
+    - `cd /usr/share/javascript/proxmox-widget-toolkit`
+    - Make a backup
+    - cp proxmoxlib.js proxmoxlib.js.bak
+    - Then open the file in nano
+    - `nano proxmoxlib.js`
+    - While in nano use ctrl-w to search for "No valid subscription"
+    - `" .data.status.toLowerCase() !== 'active') {`
+    - now go to the ! before the == and delete it
+    - it should now look like `".data.status.toLowerCase() == 'active') {"`
+    - save the file ctrl-x and exit nano
+    - Restart the ProxMox service `systemctl restart pveproxy.service`
+    - Reload your browser tab and log back in
       - This just changes the logic of the code from not active to is active.
 
    - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages.
@@ -63,7 +63,7 @@
       - `usermod -aG sudo crafthound`
       - add you key to authorized keys file
 ---------------------------------------------------------------
-3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
+ - [ ] 3. If you need to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available.
    - zpool import (poolname), If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
       - In this cas i used the followin commands
       - `zpool import -f tank-fileserver`
