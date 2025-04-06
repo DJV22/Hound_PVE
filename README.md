@@ -130,27 +130,20 @@
    - create container using the following settings
       - hostname = "mediaserver",
       - 32GB storage, 2 cores, 2048 mem, 1024 swap
-      - `0ld config - 8 GiB for disk space, 2 Cores, 1024 MiB of memory`
-    
-   - Create the following zfs datasets on PVE
-
-      - zfs create -p tank/fileserver/home as a home folder for client users on the network.
-      - chmod 777 /tank/fileserver/home
-      - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
-      - chmod 777 /tank/fileserver/share
-      - #zfs create -p rpool/fileserver/share is not created as this time, but may be useful if "fast" sharing is required. The amount of space for this purpose would be significantly smaller, and is considered an edge use case at this time.
-      - NOTE - that this should be 2770 for tighter security permissions with proper uid to be determined later
-      - zfs create -p tank/fileserver/mediaserver for host specific use, including host "internal" backups. Becomes /tank on the client.
-      - chmod 777 /tank/fileserver/mediaserver for the initial setup of permissions. This will be corrected later.
-      -  
-
    - Start the fileserver container to create it and completed the install
+      - follow prompts
+      - create password for samba root user and jeelyfin user accounts
+      - skip api key insatllation
+      - enter email for security alerts
+      - install security updates
+      - configure advanced menu settings (confconsole) if need to revisit from console
+      - apt update && apt upgrade -y
+      - verify all updates installed may have to use commad `apt list --upgradeable`
       -  create a samba password and complete the prompts in order to finish
       -  BE SURE TO SAVE INFORMATION WHEN CONTAINER COMPLETED (IP, ADDRESSES)
       -  set region data and any other relevant information.
       -  reboot appliance
       -  apt update && apt upgrade -y
-      -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
             - pct set 101 -mp0 /tank-fileserver/home,mp=/home
@@ -165,41 +158,19 @@
    - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selllecting the Create a new user button.
       - Example crafthound user is created here
       - Create known users
-         - crafthound
-         - tootsie
-         - djshadow
-         -
-   - Setup options for fileserver container
+         - crafthound - id 1000
+         - tootsie - id 1001
+         - djshadow - id 1002
+         
+   - Setup options for mediaserver container
      - `automatially boot yes`
      - `start order should be 2`
     
-     - 
+  - Add media folders on gui of samba server and share with correct settings
+  - 
 ---------------------------------------------------------------    
-7. Installing Jellyfin - create container using template LXC Mediaserver
-   - Notes as of 04/06/25
-   -  Create new container using the mediaserver template
-   - 2 cores 32GB storage, 2048 Mem, 1024 swap
-   - after creating set options to restart after reboot yes and order = 3
-   - start container and login to console
-   - follow prompts
-      - create password for samba root user and jeelyfin user accounts
-      - skip api key insatllation
-      - enter email for security alerts
-      - install security updates
-      - configure advanced menu settings (confconsole) if need to revisit from console
-      - apt update && apt upgrade -y
-      - verify all updates installed may have to use commad `apt list --upgradeable`
-      - 
-    
-   - Use your browser to connect to the GUI. `10.0.0.4:12321`
-   - We will now prepare the offered Samba shares. Go to the Samba configuration
-   - Select cdrom and Delete Selected Shares.
-   - 
-  
-
-
-
-   - https://www.youtube.com/watch?v=veyG-HbyC6A
+Potential tutorial for Jellyfin container
+- https://www.youtube.com/watch?v=veyG-HbyC6A
    - bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/jellyfin.sh)"
 
    -https://bit.ly/bbtw-proxmox-scripts
@@ -208,61 +179,13 @@
    - /tank2/fileserver/mediaserver/Movies/
    - /tank2/fileserver/mediaserver/Shows/
    
-   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE
-      - REMOVED BY THE COMMAND BELOW- pct set 103 -mp0 /tank/fileserver/home/mediaserver/Movies,mp=/data/movies
-      - REMOVED BY THE COMMAND BELOW- pct set 103 -mp1 /tank/fileserver/home/mediaserver/Shows,mp=/data/shows
    - USE THIS COMMAND - pct set 103 -mp0 /tank2/fileserver/mediaserver,mp=/data
    
    
    - apt update
    - apt upgrade -y
    - 
----------------------------------------------------------------
-testing new way of doing Fileserver
-# did not work
-   - goto https://jellyfin.org/docs/general/installation/linux specifically https://jellyfin.org/docs/general/installation/linux#repository-using-extrepo
-      - `apt install extrepo`
-      - `extrepo enable jellyfin`
-   - goto https://jellyfin.org/docs/general/installation/linux#repository-manual
-      - `apt install curl gnupg`
-      - `add-apt-repository universe`
-         - note If the above command fails you will need to install the following package software-properties-common. This can be achieved with the following command sudo apt-get install software-properties-common
-      - `add-apt-repository non-free`
-      - `mkdir -p /etc/apt/keyrings`
-      - `curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg`
-      - `apt update`
-      - `apt install jellyfin`
-   - cerify it installed and service is running `systemctl status jellyfin`
-   - 
-
-
-- Create new container using the mediaserver template
-   - 2 cores 32GB storage, 2048 Mem, 1024 swap
-   - after creating set options to restart after reboot yes and order = 3
-   - start container and login to console
-   - follow prompts
-      - create password for samba root user and jeelyfin user accounts
-      - skip api key insatllation
-      - enter email for security alerts
-      - install security updates
-      - configure advanced menu settings (confconsole) if need to revisit from console
-      - apt update && apt upgrade -y
-- make zfs datasets to be shared 
-   - zfs create -p tank/fileserver/home as a home folder for client users on the network.
-   - chmod 777 /tank/fileserver/home
-   - zfs create -p tank/fileserver/share for files to be shared amount the network users and/ or host clients.
-   - chmod 777 /tank/fileserver/share
-   - zfs create -p tank/fileserver/mediaserver for the mediaserver specefic use
-   - chmod 777 /tank/fileserver/mediaserver for the initial setup of permissions. This will be corrected later.
--  
-
-
-
-
-- 
-- curl https://repo.jellyfin.org/install-debuntu.sh | sudo bash
-
---------
+---------------------------------------------------------------    
 7. WEB SERVER CREATION
    - Download your selected template and save it to "tank"
    - Create container in PVE using gui. `Create CT`
@@ -288,67 +211,10 @@ testing new way of doing Fileserver
   - Setup options for webserver container
      - `automatially boot yes`
      - `start order should be 3`
-8. MEDIA SERVER
-   - Create a container with the following settings
-      - ID - 103, Hostname - mediaserver, Insert Password and SSH Key,
-      - Select Template - I will be using TurnKey LXC Media Server
-      - size 32 GB, 2 cores, 2048 memory, 1024 swap
-      - Enter Network information (MAC address, Static IP, Gateway, and DNS)
-      - Confirm all settings and create container
-      - goto options on pve dashboard for mediaserver container and set start at boot yes boot order 4
-   - Once the container is created and Task show OK Start the container
-   - in the console of the mediaserver container login as root
-      - Follow all prompts being sure to document user accounts created through these steps
-         - Samba root account
-         - Jellyfin user account
-         - Initialize API Key - skip this step
-         - Security alerts - enter email information
-         - Install Security updates
-         - Confirm and save Media Server appliance services
-         - configure advanced Menu items as needed
-            - I confiugred Region Settings, mail relay settings
-          
-            - reboot and update appliance
-       
-         - May not be needed - Make sure to create a user `mediaserver` in fileserver samba webadmin
-       
-         - change file storage location by doing the following on media server console
-            - mkdir -p ~/temp
-            - copy existing storage directory and contents to temp directory with the following command from the temp directory
-               - `cp -av /srv/storage .` - verify changes `ls -la`
-            - remove storage directory with following command
-               - `cd /srv`
-               - `rm -Rvf storage/`
-            - then make storage directory again
-               - `mkdir storage`
-               - then change group to `users` with the command `chgrp users storage/`
-               - then change permissions with `chmod 1775` to match previous permissions allowing users to write in directory the leading 1 means only individual owner can delete files
-               - then shutdown mediaserver container and create mount point with the following command on the PVE console
-               - `pct set 103 -mp0 /tank/fileserver/home/mediaserver,mp=/srv/storage`
-               - then verify by checking resources on mediaserver contaner match the changes above
-               - then restart container
-               - Verify succesful restart
-               - Make sure to create user mediaserver in smb of mediaserver `[https://10.0.0.6:12321](https://10.0.0.6:12321/useradmin/edit_user.cgi?xnavigation=1)` with the following parameters
-                  - directory = srv/storage
-                  - user id matches fileserver userid 1003
-                  - existing group users
-                  - do not create home directory
-                  - do not copy template from home directory
-                  - do not create users in other modules
-                  - do the same for all existing using in fileserver smb so to avoid confusion (ex. crafthound, tootsie, djshadow)
-                  - verify changes on pve directory /tank.fileserver/home/mediaserver
-                  - remove and files not need with `rm -Rfv (files)
-                  - 
-               - create a new file share on `https://fileserver:12321/samba/?xnavigation=1` with the following parameters
-                  - name `mediaserver`
-                  -  directory to share `/home/mediaserver`
-                  -  available `yes`
-                  -  browseable `yes`
-            
         - Make sure the users exist both on fileserver machine and mediaserver machine with the correct id #'s
            - 
-
-9. Gameserver creation
+---------------------------------------------------------------    
+8. Gameserver creation
    - Decide on a container ID
    - Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
    - good practice to have a template based on initial design for ease of creating on the fly
@@ -380,7 +246,7 @@ testing new way of doing Fileserver
    -  The server will run at this point, but I neto follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
 
    
-10. SET options for booting after restart and boot order for each container / virtual machine
-11. 
-12.  confconsole commmand gets us to advanced menu in container
-13.  
+9. SET options for booting after restart and boot order for each container / virtual machine
+10. 
+11.  confconsole commmand gets us to advanced menu in container
+12.  
