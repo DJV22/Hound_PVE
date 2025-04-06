@@ -1,11 +1,11 @@
 # Milestones
 
 ---------------------------------------------------------------
-1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
-   - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
-   - Complete the install selecting your desired format and setup.
-   - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
-   - pve.local
+ [ ] 1. Install [PVE](../main/PVE.md) (the Proxmox Virtual Environment)
+      - Download the latest version of Proxmox and flash ISO onto a USB stick for installation.
+      - Complete the install selecting your desired format and setup.
+      - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
+      - pve.local
 
 ---------------------------------------------------------------
 2. Prepare for on-going maintenance  
