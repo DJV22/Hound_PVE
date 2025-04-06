@@ -125,14 +125,13 @@
      - change dns domain setting to local from default lan
 ---------------------------------------------------------------
         
-6. Fileserver Creation
+6. mediaserver Creation 04/06/25
    - DownnloadLXC Fileserver template
    - create container using the following settings
-      - hostname = "fileserver",
+      - hostname = "mediaserver",
       - 32GB storage, 2 cores, 2048 mem, 1024 swap
       - `0ld config - 8 GiB for disk space, 2 Cores, 1024 MiB of memory`
-      - 
-
+    
    - Create the following zfs datasets on PVE
 
       - zfs create -p tank/fileserver/home as a home folder for client users on the network.
@@ -154,30 +153,52 @@
       -  postfix configuration - mailsetup select no configuration because issues with gmail proxy
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
-            - pct set 101 -mp0 /tank/fileserver/mediaserver,mp=/srv/storage
-            - pct set 101 -mp1 /tank/fileserver/home,mp=/home
-            - pct set 101 -mp2 /tank/fileserver/share,mp=/share
+            - pct set 101 -mp0 /tank-fileserver/home,mp=/home
+            - pct set 101 -mp1 /tank-fileserver/share,mp=/share
+            - pct set 101 -mp2 /tank-fileserver/media,mp=srv/storage
           
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
    - Select cdrom and Delete Selected Shares.
-   - 
    - Select storage and the configuration page will appear.
    - Rename storage to share, and change the "Directory to share" to /share, then Save.
-   - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selecting the Create a new user button.
+   - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selllecting the Create a new user button.
       - Example crafthound user is created here
       - Create known users
          - crafthound
          - tootsie
          - djshadow
-         - May not be needed - mediaserver
          -
    - Setup options for fileserver container
      - `automatially boot yes`
      - `start order should be 2`
+    
+     - 
 ---------------------------------------------------------------    
 7. Installing Jellyfin - create container using template LXC Mediaserver
-   -
+   - Notes as of 04/06/25
+   -  Create new container using the mediaserver template
+   - 2 cores 32GB storage, 2048 Mem, 1024 swap
+   - after creating set options to restart after reboot yes and order = 3
+   - start container and login to console
+   - follow prompts
+      - create password for samba root user and jeelyfin user accounts
+      - skip api key insatllation
+      - enter email for security alerts
+      - install security updates
+      - configure advanced menu settings (confconsole) if need to revisit from console
+      - apt update && apt upgrade -y
+      - verify all updates installed may have to use commad `apt list --upgradeable`
+      - 
+    
+   - Use your browser to connect to the GUI. `10.0.0.4:12321`
+   - We will now prepare the offered Samba shares. Go to the Samba configuration
+   - Select cdrom and Delete Selected Shares.
+   - 
+  
+
+
+
    - https://www.youtube.com/watch?v=veyG-HbyC6A
    - bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/jellyfin.sh)"
 
