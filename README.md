@@ -167,24 +167,10 @@
      - `start order should be 2`
     
   - Add media folders on gui of samba server and share with correct settings
-  - 
----------------------------------------------------------------    
-Potential tutorial for Jellyfin container
-- https://www.youtube.com/watch?v=veyG-HbyC6A
-   - bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/jellyfin.sh)"
-
-   -https://bit.ly/bbtw-proxmox-scripts
-   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE - /tank/fileserver/home/mediaserver/Movies/
-   - THE FOLLOWING COMMANDS HAVE BEEN MADE IDLE BY THE LAST LINE - /tank/fileserver/home/mediaserver/Shows/
-   - /tank2/fileserver/mediaserver/Movies/
-   - /tank2/fileserver/mediaserver/Shows/
-   
-   - USE THIS COMMAND - pct set 103 -mp0 /tank2/fileserver/mediaserver,mp=/data
-   
-   
-   - apt update
-   - apt upgrade -y
+  - Setting permissions for folders
+   - I used the settings `chmod 2770 (name of directory)` this allows users and group Read and Write access, but others have no access. Change as you need. Search Debian permission explanation ubuntu for more information
    - 
+
 ---------------------------------------------------------------    
 7. WEB SERVER CREATION
    - Download your selected template and save it to "tank"
