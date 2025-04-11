@@ -72,6 +72,7 @@
       - Raid level I chose RAIDZ (My config breakdown = 3 20TB disk 1 parity 2 actual drives equaling 40TB of storage. If 1 disk fails you can recover data)
       - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
    - Adding datasets to match planned file structure configuration
+
    !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    - tank-backups/vz
    - tank-fileserver home
