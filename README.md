@@ -148,7 +148,7 @@
          - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
             - pct set 101 -mp0 /tank-fileserver/home,mp=/home
             - pct set 101 -mp1 /tank-fileserver/share,mp=/share
-            - pct set 101 -mp2 /tank-fileserver/media,mp=srv/storage
+            - pct set 101 -mp2 /tank-fileserver/media,mp=/srv/storage
           
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
