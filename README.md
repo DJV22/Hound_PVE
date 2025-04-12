@@ -209,6 +209,12 @@
 
 7. WEBSITE HOSTING
  - Decide what hositng application to use (wordpress, Nginx,)
+
+ - Create the datasets for the website directory to be used
+  - use the following command `zfs create tank-fileserver/crafthoundgaming` and `zfs create tank-fileserver/overthehillstead`
+    - This allows you to setup the mountpoints below that refer to the datasets created above (if using multiple mount points make sure to use a new sequential mount point ex. mp3)
+    -  `pct set 101 -mp3 /tank-fileserver/crafthoundgaming,mp=/srv/crafthoundgaming`
+    -  `pct set 101 -mp4 /tank-fileserver/overthehillstead,mp=/srv/overthehillstead`
  -  
    
 
