@@ -66,39 +66,41 @@
  - [ ] 3. Create your ZFS pools or Import them as needed
   - To create your ZFS pool do the following
    - Goto PVE - ZFS on the right column, select create zfs from top right and complete information
-      - Name - use your desired name 
+      - Name - use your desired name
+       - I used the following
+        - first add `tank-backups`
+        - second add `tank-fileserver` 
       - compression on by default
       - ashift 12 by default
       - Raid level I chose RAIDZ (My config breakdown = 3 20TB disk 1 parity 2 actual drives equaling 40TB of storage. If 1 disk fails you can recover data)
       - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
-   - Adding datasets to match planned file structure configuration
+   - Adding datasets to match planned file structure configuration from the PVE shell console
+    - for tank-backups use the following command to create a zfs dataset for ProxMox storage
+     - `zfs create tank-backups/vz` This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go.
+      -Once created you can add it by following these steps, adding ProxMox storage units can be skipped if not used for ProxMox storage
+       - On Datacenter:Storage use the Add button and select Directory.
+       - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+       - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
+       - We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options
+     - for tank-fileserver use the following commands - This creates the datasets to be used once the fileserver container is created.
+     - `zfs create tank-fileserver/home`
+     - `zfs create tank-fileserver/share`
+     - `zfs create tank-fileserver/media`
+     - Use the command `zfs list` to ensure all datasets were properly created and ready for use.
 
-   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   - tank-backups/vz
-   - tank-fileserver home
-   - tank-fileserver share
-   - tank-fileserver media
-     - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line1: make sure each is identified as a unique mount point (mp0, mp1 etc)
-            - pct set 101 -mp0 /tank-fileserver/home,mp=/home
-            - pct set 101 -mp1 /tank-fileserver/share,mp=/share
-            - pct set 101 -mp2 /tank-fileserver/media,mp=/srv/storage
-          
- 
+
  - to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available
       - In this case I used the following commands from pve console
       - `zpool import -f tank-fileserver`
       - `zpool import -f tank-backups`
       - If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
 
-- Adding ProxMox storage units (can be skipped if not used for ProxMox storage)
-   - On Datacenter:Storage use the Add button and select Directory.
-   - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
-   - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
-   - We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options unless one of those is selected anyway.
+ unless one of those is selected anyway.
    - local-zfs pool should only have disk image and containers.
   
 - 
 - 
+   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ---------------------------------------------------------------
 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
@@ -141,10 +143,10 @@
      - change dns domain setting to local from default lan
 ---------------------------------------------------------------
         
-6. mediaserver Creation 04/06/25
+6. fileserver Creation 04/06/25
    - DownnloadLXC Fileserver template
    - create container using the following settings
-      - hostname = "mediaserver",
+      - hostname = "fileserver",
       - 32GB storage, 2 cores, 2048 mem, 1024 swap
    - Start the fileserver container to create it and completed the install
       - follow prompts
@@ -161,6 +163,15 @@
       -  reboot appliance
       -  apt update && apt upgrade -y
       -  once install is completed shutdown and link the filesystem in zfs to the fileserver using commands below
+    
+  - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line: make sure each is identified as a unique mount point (mp0, mp1 etc)
+   - tank-fileserver home
+    - `pct set 101 -mp0 /tank-fileserver/home,mp=/home`
+   - tank-fileserver share
+    - `pct set 101 -mp1 /tank-fileserver/share,mp=/share`
+   - tank-fileserver media
+    - `pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media`
+  
 
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
