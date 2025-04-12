@@ -173,8 +173,6 @@
     - `pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media`
    - verify using zfs list
 
-   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
    - Select cdrom and Delete Selected Shares.
@@ -192,24 +190,33 @@
      - `start order should be 2`
     
   - Add media folders on gui of samba server and share with correct settings
-   - home - should alrady exist with path equal to all home directories and security set to read/write to all known users
+   - home - should already exist with path equal to all home directories and security set to read/write to all known users
    - share - should have been created from changing storage above
    - media - create a new file share, name it media, directory to share /srv/media both available and browseable set to yes click save
   
   - Setting permissions for folders
   - from the pve console make sure to configure settings accordingly
    - both the share and the media folder should be mirrored with settings
-   - owner should be equal to "fileserver root" = to id 100000, use command from pve console ` root@pve:~# chown 100000:100000 /tank-fileserver/share`
-   - group should be equal to "fileserver users" = to 100100, use command from pve console `chgrp -Rv 100100 /tank-fileserver/share/`
-  - Be sure to set permissions for share and amedia folders using the following commands
+   - owner should be equal to "fileserver root" = to id 100000, use command from pve console `chown 100000:100000 /tank-fileserver/share` and `chown 100000:100000 /tank-fileserver/media`
+   - group should be equal to "fileserver users" = to 100100, use command from pve console `chgrp -Rv 100100 /tank-fileserver/share/` and `chgrp -Rv 100100 /tank-fileserver/media/`
+  - Be sure to set permissions for share and media folders using the following commands
    - `chmod 2770 /tank-fileserver/share/`
    - `chmod 2770 /tank-fileserver/media/`
    
-   - verify changes took place with the command `ls -la /tank-fileserver/`
+   - verify the changes took place with the command `ls -la /tank-fileserver/`
+---------------------------------------------------------------    
+   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+7. WEBSITE HOSTING
+ - Decide what hositng application to use (wordpress, Nginx,)
+ -  
+   
+
+
 
 
 ---------------------------------------------------------------    
-7. WEB SERVER CREATION
+WEB SERVER CREATION
    - Download your selected template and save it to "tank"
    - Create container in PVE using gui. `Create CT`
    - I used the following setting while creating container
