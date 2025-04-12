@@ -102,11 +102,6 @@
       - If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
      - Use the command `zfs list` to ensure all datasets were properly imported and ready for use.
 
- 
-- 
-- 
-   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 ---------------------------------------------------------------
 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - To create a DNS Server Appliance follow these steps
@@ -176,28 +171,42 @@
     - `pct set 101 -mp1 /tank-fileserver/share,mp=/share`
    - tank-fileserver media
     - `pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media`
-  
+   - verify using zfs list
+
+   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
    - Use your browser to connect to the GUI.
    - We will now prepare the offered Samba shares. Go to the Samba configuration
    - Select cdrom and Delete Selected Shares.
    - Select storage and the configuration page will appear.
    - Rename storage to share, and change the "Directory to share" to /share, then Save.
-   - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1. For example, let's create the username "bob" by selllecting the Create a new user button.
+   - Add System users and groups through https://fileserver:12321/useradmin/?xnavigation=1.
       - Example crafthound user is created here
       - Create known users
-         - crafthound - id 1000
-         - tootsie - id 1001
-         - djshadow - id 1002
+         - crafthound 
+         - tootsie
+         - djshadow 
          
-   - Setup options for mediaserver container
+   - Setup options for fileserver container
      - `automatially boot yes`
      - `start order should be 2`
     
   - Add media folders on gui of samba server and share with correct settings
+   - home - should alrady exist with path equal to all home directories and security set to read/write to all known users
+   - share - should have been created from changing storage above
+   - media - create a new file share, name it media, directory to share /srv/media both available and browseable set to yes click save
+  
   - Setting permissions for folders
-   - I used the settings `chmod 2770 (name of directory)` this allows users and group Read and Write access, but others have no access. Change as you need. Search Debian permission explanation ubuntu for more information
-   - 
+  - from the pve console make sure to configure settings accordingly
+   - both the share and the media folder should be mirrored with settings
+   - owner should be equal to "fileserver root" = to id 100000, use command from pve console ` root@pve:~# chown 100000:100000 /tank-fileserver/share`
+   - group should be equal to "fileserver users" = to 100100, use command from pve console `chgrp -Rv 100100 /tank-fileserver/share/`
+  - Be sure to set permissions for share and amedia folders using the following commands
+   - `chmod 2770 /tank-fileserver/share/`
+   - `chmod 2770 /tank-fileserver/media/`
+   
+   - verify changes took place with the command `ls -la /tank-fileserver/`
+
 
 ---------------------------------------------------------------    
 7. WEB SERVER CREATION
