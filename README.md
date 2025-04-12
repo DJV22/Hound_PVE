@@ -77,11 +77,17 @@
    - Adding datasets to match planned file structure configuration from the PVE shell console
     - for tank-backups use the following command to create a zfs dataset for ProxMox storage
      - `zfs create tank-backups/vz` This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go.
-      -Once created you can add it by following these steps, adding ProxMox storage units can be skipped if not used for ProxMox storage
+      - Once created you can add it to ProxMox storage by following these steps
        - On Datacenter:Storage use the Add button and select Directory.
        - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
        - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
-       - We want to turn OFF those options from "local", select it and use "Edit" and deactivate those selections in Content:, and make sure "Snippets" is active. If "Snippets" come into use, they will be small, benefit from the faster drive, and you can't save the options
+       - We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
+       - Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
+       - If "Snippets" come into use, they will be small.
+   - local-zfs pool should only have disk image and containers.
+ 
+       -
+       -    from the faster drive, and you can't save the options
      - for tank-fileserver use the following commands - This creates the datasets to be used once the fileserver container is created.
      - `zfs create tank-fileserver/home`
      - `zfs create tank-fileserver/share`
@@ -94,10 +100,9 @@
       - `zpool import -f tank-fileserver`
       - `zpool import -f tank-backups`
       - If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
+     - Use the command `zfs list` to ensure all datasets were properly imported and ready for use.
 
- unless one of those is selected anyway.
-   - local-zfs pool should only have disk image and containers.
-  
+ 
 - 
 - 
    !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
