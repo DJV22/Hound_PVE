@@ -291,7 +291,7 @@ How To Secure Apache with Let's Encrypt on Ubuntu 20.04
 ---------------------------------------------------------------
 > !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ---------------------------------------------------------------
-Insatlling wordpress on the local machine
+Installing wordpress on the local machine
 ---------------------------------------------------------------
 
 ---------------------------------------------------------------    
