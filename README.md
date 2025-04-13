@@ -205,8 +205,6 @@
    
    - verify the changes took place with the command `ls -la /tank-fileserver/`
 ---------------------------------------------------------------    
-   !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 7. WEBSITE HOSTING
  - Decide what hositng application to use (wordpress, Nginx,)
 
@@ -260,9 +258,10 @@
   - once you do that restart the apache service with the following command `systemctl restart apache2`
   - visit you site to verify configurations are working. You may need to open your port 80 using port forwarding.
 
-  - 
+  -
+> !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+How To Secure Apache with Let's Encrypt on Ubuntu 20.04
 - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
-
 
    
 
