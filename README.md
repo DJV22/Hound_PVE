@@ -215,7 +215,41 @@
     - This allows you to setup the mountpoints below that refer to the datasets created above (if using multiple mount points make sure to use a new sequential mount point ex. mp3)
     -  `pct set 101 -mp3 /tank-fileserver/crafthoundgaming,mp=/srv/crafthoundgaming`
     -  `pct set 101 -mp4 /tank-fileserver/overthehillstead,mp=/srv/overthehillstead`
- -  
+
+ - `https://www.liquidweb.com/blog/configure-apache-virtual-hosts-ubuntu-18-04/ `
+- Make a Directory for Each Site
+- create a folder for each domain needed, the locationwill be where you will host the website files. I used /srv/domainname the should be owned by user and group root when created
+ - crafthoundgaming is for crafthoundgaming.com
+  - `mkdir -p /srv/crafthoundgaming`
+ - overthehillstead is for overthehillstead.com
+  - `mkdir -p /srv/overhillstead.com`
+ - Set Folder Permissions
+ - modify folder properties accordingly
+  - `chmod -R 755 /srv/crafthoundgaming` and `chmod -R 755 /srv/overthehillstead` 
+ - Set up an Index Page
+ - for testing purposes create an index.html file in each folder and paste a line of text with each domain name inside. I used the following; this site is crafthoundgaming or overthillstead respectively.
+  - use command inside each directory `nano index.html` use this text for crafthoundgaming `this site is crafthoundgaming` close and save the file
+ - Copy the Config File for Each Site
+  - `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/crafthoundgaming.conf`
+  - `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/overthehillstead.conf`
+ - Edit the Config File for Each Site
+  - `nano /etc/apache2/sites-available/crafthoundgaming.conf`
+  - `nano /etc/apache2/sites-available/overthehillstead.conf`
+  
+  - make sure to change the information from the default that was copied to apply to your current domain for the example of crafthoundgaming.conf do the following
+<VirtualHost *:80>
+ServerName crafthoundgaming.com
+ServerAlias www.crafthoundgaming.com
+
+ServerName crafthoundgaming.com
+ServerAlias www.crafthoundgaming.com
+
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+ - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
+
+
    
 
 
