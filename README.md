@@ -245,7 +245,7 @@
 > ServerAlias www.crafthoundgaming.com
 > 
 > ErrorLog ${APACHE_LOG_DIR}/error.log
-> CustomLog ${APACHE_LOG_DIR}/access.log combined
+> "CustomLog ${APACHE_LOG_DIR}/access.log combined"
 > </VirtualHost>
 
  - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
