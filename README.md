@@ -237,16 +237,21 @@
   - `nano /etc/apache2/sites-available/overthehillstead.conf`
   
   - make sure to change the information from the default that was copied to apply to your current domain for the example of crafthoundgaming.conf do the following
-> <VirtualHost *:80>
-> ServerName crafthoundgaming.com
-> ServerAlias www.crafthoundgaming.com
-> 
-> ServerName crafthoundgaming.com
-> ServerAlias www.crafthoundgaming.com
-> 
-> ErrorLog ${APACHE_LOG_DIR}/error.log
-> "CustomLog ${APACHE_LOG_DIR}/access.log combined"
-> </VirtualHost>
+ <VirtualHost \*:80>
+
+ ServerName crafthoundgaming.com
+
+ ServerAlias www.crafthoundgaming.com
+
+ ServerName crafthoundgaming.com
+
+ ServerAlias www.crafthoundgaming.com
+
+ ErrorLog ${APACHE\_LOG\_DIR}/error.log
+
+ CustomLog ${APACHE\_LOG\_DIR}/access.log combined
+
+ </VirtualHost>
 
  - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
 
