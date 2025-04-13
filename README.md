@@ -253,7 +253,15 @@
 >
 > </VirtualHost>
 
- - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
+- repeat this for overthehillstead.conf
+- Enable Your Config File
+ - I did this by creating a symbolic link to each of the newly created .conf files. in order to do this you must use the following command
+  - `ln -s /etc/apache2/sites-available/crafthoundgaming.conf crafthoundgaming.conf` and `ln -s /etc/apache2/sites-available/overthehillstead.conf overthehillstead.conf`
+  - once you do that restart the apache service with the following command `systemctl restart apache2`
+  - visit you site to verify configurations are working. You may need to open your port 80 using port forwarding.
+
+  - 
+- https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
 
 
    
