@@ -259,44 +259,41 @@
   - visit you site to verify configurations are working. You may need to open your port 80 using port forwarding.
 
   -
-> !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 How To Secure Apache with Let's Encrypt on Ubuntu 20.04
 - https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
+- Installing Certbot
+ - apt install certbot python3-certbot-apache
+- Checking your Apache Virtual Host Configuration
+ - nano /etc/apache2/sites-available/crafthoundgaming.conf
+ - make sure you ServerName and ServerAlias lines are correctly filled out
+  - `ServerAlias www.crafthoundgaming.com`
+  - `ServerName crafthoundgaming.com`
+ - if that is verified now check config by using the following command
+  - `apache2ctl configtest` you should get s `syntax ok` response if you get an error check for spelling errors
+  - now reload appache service with the command `systemctl reload apache2`
+  - with these settings certbot should be able to find the correct VirtualHost block and update it.
 
-   
+  - At this point you can configure UFW to allow the firewall but I decided to skip this step
 
+  - Obtaining an SSL Certificate
+   - use the following command `certbot --apache`
+    - This script will prompt you to answer a series of questions in order to configure your SSL certificate.
+     you will be asked to provide an email, agree to read terms of service, share email for other purposes, finally it will ask you to confirm the domains you want to provide certificates for.
+    - Select the appropriate domains or leave blank to select them all.
+    - You should see an output that obtains and enable the certificates. It may prompt you to allow http traffic to be redirected to https select your apprpriate response.
+    - After this step, Certbot’s configuration is finished, and you will be presented with the final remarks about your new certificate, where to locate the generated files, and how to test your configuration using an external tool that analyzes your certificate’s authenticity
+    - The certbot package we installed takes care of renewals in order to test it run the following command `systemctl status certbot.timer`
+    - To test the renewal process, you can do a dry run with certbot:
+    - `certbot renew --dry-run`
+     - If no errors are preset you are good to go!
 
+---------------------------------------------------------------
+> !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+---------------------------------------------------------------
+Insatlling wordpress on the local machine
+---------------------------------------------------------------
 
-
----------------------------------------------------------------    
-WEB SERVER CREATION
-   - Download your selected template and save it to "tank"
-   - Create container in PVE using gui. `Create CT`
-   - I used the following setting while creating container
-      - ID - 102, Hostname - webserver, Insert Password and SSH Key,
-      - Select Template - I will be using TurnKey WordPress version (18.2) at the time of installation.
-      - size 32 GB, 2 cores, 1024 memory, 1024 swap
-      - Enter Network information (MAC address, Static IP, Gateway)
-      - Confirm settings and create container
-   - After intstallation reboot container and login to console as root
-      - complete installation by following prompts
-      - 
-      - ensure passwords are secure and are unique
-      - after following prompts enter domain name information and confirm ip settings
-      - after information is verified you can add advanced menu items
-      - install lets encrypt following the advanced menu (`conconsole` command in shell if closed advanced menu) 
-         - follow prompts
-         - get certificate
-         - toggle renew certificate to enable
-         - save settings and reboot
-    
-      - create local dns record webserver.local - dedicated ip (10.0.0.50)
-  - Setup options for webserver container
-     - `automatially boot yes`
-     - `start order should be 3`
-        - Make sure the users exist both on fileserver machine and mediaserver machine with the correct id #'s
-           - 
 ---------------------------------------------------------------    
 8. Gameserver creation
    - Decide on a container ID
