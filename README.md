@@ -291,6 +291,16 @@ How To Secure Apache with Let's Encrypt on Ubuntu 20.04
 ---------------------------------------------------------------
 > !!!!!!!!!!!!!!!!!!!!!!!!!! THIS IS A PLACEHOLDER FOR AFTER I DEFOG MY BRAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ---------------------------------------------------------------
+Installing MariaDB - `https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-11`
+ - apt update && apt upgrade -y - This updates all available packages
+ - apt install mariadb-server - This installs MariaDB which is an alternative database to MySQL in the LAMP stack
+ - mysql_secure_installation - This will take you through a series of prompts where you can make some changes to your MariaDB installation’s security options.
+  - press ENTER to indicate “none”.
+  - ype n and then press ENTER.
+  - Type n and then press ENTER.
+   - From there, you can press Y and then ENTER to accept the defaults for all the subsequent questions.
+    - This will remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MariaDB immediately implements the changes you have made.
+
 Installing wordpress on the local machine
 ---------------------------------------------------------------
 
