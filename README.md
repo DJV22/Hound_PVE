@@ -110,10 +110,12 @@
    - If "Snippets" come into use, they will be small.
    - local-zfs pool should only have disk image and containers.
 ---------------------------------------------------------------
-4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
+ - [ ] 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - To create a DNS Server Appliance follow these steps
       - Create a Debian LXC Container with the following settings
          - hostname = "DNS", 8 GiB for disk space, 2 Cores, 1024 MiB of memory
+         - Network information is based on your individual needs. For my situation the following applies
+          - IPV4 `10.0.0.3/24` GATEWAY ` 10.0.0.1`
       - After the reboot, log back in. make sure network information is correct (Mac address, ip and gateway)
       - Update using 'apt update && apt upgrade -y'
       - Install curl using 'apt install curl -y'
