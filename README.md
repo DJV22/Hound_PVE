@@ -102,12 +102,12 @@
       - If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
      - Use the command `zfs list` to ensure all datasets were properly imported and ready for use.
  - Once imported you can add it to ProxMox storage by following these steps
-       - On Datacenter:Storage use the Add button and select Directory.
-       - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
-       - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
-       - We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
-       - Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
-       - If "Snippets" come into use, they will be small.
+   - On Datacenter:Storage use the Add button and select Directory.
+   - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+   - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
+   - We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
+   - Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
+   - If "Snippets" come into use, they will be small.
    - local-zfs pool should only have disk image and containers.
 ---------------------------------------------------------------
 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
