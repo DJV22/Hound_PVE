@@ -109,6 +109,17 @@
    - Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
    - If "Snippets" come into use, they will be small.
    - local-zfs pool should only have disk image and containers.
+   - local-zfs pool should only have disk image and containers.
+   - from the faster drive, and you can't save the options
+   - from the tank-fileserver container shell use the following commands -
+    - This creates the datasets to be used once the fileserver container is created.
+    - `zfs create tank-fileserver/home`
+    - `zfs create tank-fileserver/share`
+    - `zfs create tank-fileserver/media`
+
+   - Use the command `zfs list` to ensure all datasets were properly created and ready for use.
+  
+     
 ---------------------------------------------------------------
  - [ ] 4. Install [DNS](../main/DNS.md) (the DNS Server Appliance)
    - To create a DNS Server Appliance follow these steps
