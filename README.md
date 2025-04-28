@@ -6,6 +6,8 @@
       - Complete the install selecting your desired format and setup.
       - I used the UM890 PRO with 96GB of Ram, (2) 4.0 TB SSD (ZFS RAID1 configuration)
       - pve.local
+      - Once installed you can login here or connect remorely by pointing your browser from a network pc to the ip of the proxmox machine followed by port 8006 `https://yourmachineip:8006`
+      - I edit the .basrc file to suit my liking you can too or bypass
 
 ---------------------------------------------------------------
  - [ ] 2. Prepare for on-going maintenance  
