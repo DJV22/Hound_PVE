@@ -34,7 +34,7 @@
    - Check what is inside /etc/ssh/sshd_config.d, review any configurations that may be present, if any are present then verify they are needed and not overwritten.
    - This line may be present near the top of the file in case anything that was installed requires configurations no need to change it just be aware of it
       - Include /etc/ssh/sshd_config.d/*.conf
-   - Configure /etc/ssh/sshd_config - be sure to make comments in the file jus in case something fails
+   - Configure /etc/ssh/sshd_config - be sure to make comments in the file just in case something fails
       -  PermitRootLogin no
       -  PasswordAuthentication no
       -  PermitTunnel yes
