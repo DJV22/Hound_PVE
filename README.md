@@ -20,23 +20,7 @@
       - Enable
          * no subscription ceph-quincy
          * no subscription ceph-reef
-   - From the console of PVE
-    - change directories to:
-    - `cd /usr/share/javascript/proxmox-widget-toolkit`
-    - Make a backup
-    - cp proxmoxlib.js proxmoxlib.js.bak
-    - Then open the file in nano
-    - `nano proxmoxlib.js`
-    - While in nano use ctrl-w to search for "No valid subscription"
-    - `" .data.status.toLowerCase() !== 'active') {`
-    - now go to the ! before the == and delete it
-    - it should now look like `".data.status.toLowerCase() == 'active') {"`
-    - save the file ctrl-x and exit nano
-    - Restart the ProxMox service `systemctl restart pveproxy.service`
-    - Reload your browser tab and log back in
-      - This just changes the logic of the code from not active to is active.
-
-   - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages.
+    - Update all packages by selecting (PVE:Updates) on the right hand panel and refresh packages.
       - This should prompt for all the latest updates. Then when TASK ok show in the pop-up window. Close that window and press upgrade. When complete it will show "Your System is up-to-date".
       - Now update the PVE appliance templates list by forcing the update. Use the following command `pveam update` in the shell. See link for further information of possible future changes. https://forum.proxmox.com/threads/howto-update-of-appliance-templates.1074/
       - install unzip `apt install unzip`
