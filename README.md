@@ -54,18 +54,20 @@
    - Goto PVE - ZFS on the right column, select create zfs from top right and complete information
       - Name - use your desired name
        - I used the following
-        - first add `tank-backups`
-        - second add `tank-fileserver` 
+        - first add `backups`
+        - second add `media` 
       - compression on by default
       - ashift 12 by default
       - Raid level I chose RAIDZ (My config breakdown = 3 20TB disk 1 parity 2 actual drives equaling 40TB of storage. If 1 disk fails you can recover data)
       - Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
    - Adding datasets to match planned file structure configuration from the PVE shell console
     - for tank-backups use the following command to create a zfs dataset for ProxMox storage
-     - `zfs create tank-backups/vz` This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go.
+     - `zfs create backups/vz` This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go.
       - Once created you can add it to ProxMox storage by following these steps
+      - REMOVE Backups zfs if it exist prior to adding backups directory
+       - ID `backups`, Directory `/backups/vz`
        - On Datacenter:Storage use the Add button and select Directory.
-       - Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+       - Give it an ID of `backups` and the directory is `/backups/vz`. The Shared: box should be off, as there are no additional nodes in this setup.
        - Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
        - We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
        - Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
@@ -74,10 +76,10 @@
  
        -
        -    from the faster drive, and you can't save the options
-     - for tank-fileserver use the following commands - This creates the datasets to be used once the fileserver container is created.
-     - `zfs create tank-fileserver/home`
-     - `zfs create tank-fileserver/share`
-     - `zfs create tank-fileserver/media`
+     - for "media" use the following commands - This creates the datasets to be used once the fileserver container is created.
+     - `zfs create fileserver/home`
+     - `zfs create fileserver/share`
+     - `zfs create filerserver/media`
      - Use the command `zfs list` to ensure all datasets were properly created and ready for use.
 
 
@@ -99,9 +101,9 @@
    - from the faster drive, and you can't save the options
    - from the tank-fileserver container shell use the following commands -
     - This creates the datasets to be used once the fileserver container is created.
-    - `zfs create tank-fileserver/home`
-    - `zfs create tank-fileserver/share`
-    - `zfs create tank-fileserver/media`
+    - `zfs create fileserver/home`
+    - `zfs create fileserver/share`
+    - `zfs create fileserver/media`
 
    - Use the command `zfs list` to ensure all datasets were properly created and ready for use.
   
@@ -172,11 +174,11 @@
     
   - Use the following commands to link the created zfs filesystem to the fileserver from the PVE command line: make sure each is identified as a unique mount point (mp0, mp1 etc)
    - tank-fileserver home
-    - `pct set 101 -mp0 /tank-fileserver/home,mp=/home`
+    - `pct set 101 -mp0 /fileserver/home,mp=/home`
    - tank-fileserver share
-    - `pct set 101 -mp1 /tank-fileserver/share,mp=/share`
+    - `pct set 101 -mp1 /fileserver/share,mp=/share`
    - tank-fileserver media
-    - `pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media`
+    - `pct set 101 -mp2 /fileserver/media,mp=/srv/media`
    - verify using zfs list
 
    - Use your browser to connect to the GUI.
