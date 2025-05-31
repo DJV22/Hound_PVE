@@ -12,15 +12,15 @@ Create a MariaDB Database for WordPress:
 Log in to MariaDB.
     sudo mysql -u root -p
 
-    CREATE DATABASE wordpress_db;
-    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'your_strong_password';
-    GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+    CREATE DATABASE wp_chg_db;
+    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    GRANT ALL PRIVILEGES ON wp_chg_db.* TO 'chg_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
 
-    CREATE DATABASE wordpress_db;
-    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'your_strong_password';
-    GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+    CREATE DATABASE wp_oth_db;
+    CREATE USER 'oth_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    GRANT ALL PRIVILEGES ON wp_oth_db.* TO 'oth_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
 
