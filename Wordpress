@@ -8,21 +8,69 @@ Installing WordPress with a LAMP stack on Debian 12
     sudo a2enmod php8.2 # Replace 8.x with your installed PHP version
     sudo a2enmod rewrite
     sudo systemctl restart apache2
+
 Create a MariaDB Database for WordPress:
 Log in to MariaDB.
     sudo mysql -u root -p
+Each database below is specific to each domain
+WP_CHG = crafthoundgaming.com
+WP_OTH = overthehillstead.com
 
     CREATE DATABASE wp_chg_db;
-    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'z7hHyFLKnvQvgb3nvHPNtTgvG';
     GRANT ALL PRIVILEGES ON wp_chg_db.* TO 'chg_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
 
     CREATE DATABASE wp_oth_db;
-    CREATE USER 'oth_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    CREATE USER 'oth_user'@'localhost' IDENTIFIED BY 'TijVQcEhNx2bbfDtoXjc3Jk9H';
     GRANT ALL PRIVILEGES ON wp_oth_db.* TO 'oth_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
+
+3. Download and Configure WordPress:
+Download WordPress.
+    mkdir /temp
+    cd /temp
+    wget https://wordpress.org/latest.tar.gz
+    tar -xzvf latest.tar.gz
+Move WordPress files to the Apache web root for crafthoundgaming.com:
+    mv wordpress /var/www/html/crafthoundgaming
+do the same for overthehillstead.com
+    tar -xzvf latest.tar.gz
+Move WordPress files to the Apache web root for overthehillstead.com:
+    mv wordpress /var/www/html/overthehillstead
+
+Set correct permissions for crafthoundgaming and overthehillstead.
+crafthoundgaming.com
+    chown -R www-data:www-data /var/www/html/crafthoundgaming
+    chmod -R 755 /var/www/html/crafthoundgaming
+overthehillstead.com
+    chown -R www-data:www-data /var/www/html/overthehillstead
+    chmod -R 755 /var/www/html/overthehillstead
+
+Create WordPress configuration file for each created domain.
+crafthoundgaming.com
+    cd /var/www/html/crafthoundgaming
+    cp wp-config-sample.php wp-config.php
+overthehillstead.com
+    cd /var/www/html/overthehillstead
+    cp wp-config-sample.php wp-config.php
+Edit wp-config.php for each domain.
+    nano wp-config.php
+Update the database details with the ones you created:
+sample
+    define( 'DB_NAME', 'wordpress_db' );
+    define( 'DB_USER', 'wordpress_user' );
+    define( 'DB_PASSWORD', 'your_strong_password' );
+crafthoundgaming.com
+    define( 'DB_NAME', 'wp_chg_db' );
+    define( 'DB_USER', 'chg_user' );
+    define( 'DB_PASSWORD', 'PASSWORD' );
+overthehillstead.com
+    define( 'DB_NAME', 'wp_db' );
+    define( 'DB_USER', 'oth_user' );
+    define( 'DB_PASSWORD', 'PASSWORD' );
 
 
 
