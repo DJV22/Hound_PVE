@@ -94,6 +94,16 @@ define('SECURE_AUTH_SALT', 'weNt`Aet^,!#IQV^y:g#Q|=D wV{R!~I/z,PbB5g|jd0-R,K$1;v
 define('LOGGED_IN_SALT',   ']~@O[^Kcg]`^:st&<JMqDVLhwXrS8,IPRt;R+{jq6mRRM2]&nd3*&>JljGJbV*7l');
 define('NONCE_SALT',       'A5{Mn!Y)hMWEuV6S~RRafNj>Cp@|o~pIs|A3Rq>XxX8/&|)Uy2 rx5k8e PEw*e-');
 
+configure apache to complete wordpress installation
+nano /etc/apache2/sites-available/your_domain.conf
+
+crafthoundgaming.com
+nano /etc/apache2/sites-available/crafthoundgaming.conf
+
+overthehillstead.com
+sudo nano /etc/apache2/sites-available/ovethehillstead.conf
+
+
 
 === unedited notes from AI ===
 
