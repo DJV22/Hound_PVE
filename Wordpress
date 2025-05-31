@@ -72,6 +72,27 @@ overthehillstead.com
     define( 'DB_USER', 'oth_user' );
     define( 'DB_PASSWORD', 'PASSWORD' );
 
+Generate unique salts and keys from the WordPress API and paste them into wp-config.php.
+
+crafthoundgaming.com
+define('AUTH_KEY',         '02>^>-o-lJnw`t2s314LC8 !rmT#Njg|7Le=EsMXM4M0,w;*<+-^FY$(~@y(za5L');
+define('SECURE_AUTH_KEY',  '_Ozl%n}9iY%uMzfW@^6!%?;&Hd_n8DjvM[8WUqYUtj9Nnw/Dx7@-,ES%`mMvA{hM');
+define('LOGGED_IN_KEY',    '(dpP-T!5V=nPP<(l9GVBwq1<TSp-K-Rh4s+U{c^Ax}&6It,e{&*{7|4cFCrTh)3w');
+define('NONCE_KEY',        'dmJ}!k[m5>9N-z-iZ+;aF|O2/23*~UTS@>?V$22U$Q+ILKF;+.,M{lu:;G([DYmd');
+define('AUTH_SALT',        'Rzm0iCwQ3OH/ChW9=ts=Ol1poZgzB&Xm!;d9YR`{/OLy`ERa@go7YT+b ..F/xw;');
+define('SECURE_AUTH_SALT', '{~GyLgg0/S_-FUjWoH[g($g/JHiVM$upeNvuuSD`(#+[NBE+G`rD?V4Jc)mE%i>Y');
+define('LOGGED_IN_SALT',   '`fe8#+<DXGFESU}T(l[0&*zHAB9I~qu?CO<XnUV3S,xsFQmoRXX<9Y|9}b;<.|u@');
+define('NONCE_SALT',       '{qvw_B%[o7qGSz1$]vs|2Px}<_L14y5+-mDRV;8ziKy-~7ow*kMpObvbdd;i:*rp');
+
+overthehillstead.com
+define('AUTH_KEY',         'f-:)bi{z3nk437WNlh;4b)kA`}6mgR]/q%7,[hb4R97zH@2:Il_!KEtUY$(7RhAq');
+define('SECURE_AUTH_KEY',  '7SW]j]r8FzdS[][9IS}Z_Eygp%n{.@+J0I5-?/JZFxrT(S02z+p&0g>|SSf7}!tj');
+define('LOGGED_IN_KEY',    'wC@FMKm3Jo5P#+ySe{4C-b}.w!e<|!oz.p-laZ{gv`u$y[70?~bn{|-B{K+JG}@[');
+define('NONCE_KEY',        'rtP2AmIak^N6-%zer-7+djY;A _8<;ra-W|Vw|+ed{J(%RGYlK@O)D`V0[?&yj/s');
+define('AUTH_SALT',        'ekxusz5p>L0mSjPY=*mg|%Ig%Z#:w;~+A~A&?(4d=,sy/2:<C9[#!&,SD&7rG.b;');
+define('SECURE_AUTH_SALT', 'weNt`Aet^,!#IQV^y:g#Q|=D wV{R!~I/z,PbB5g|jd0-R,K$1;vDuMqd;-P[^qW');
+define('LOGGED_IN_SALT',   ']~@O[^Kcg]`^:st&<JMqDVLhwXrS8,IPRt;R+{jq6mRRM2]&nd3*&>JljGJbV*7l');
+define('NONCE_SALT',       'A5{Mn!Y)hMWEuV6S~RRafNj>Cp@|o~pIs|A3Rq>XxX8/&|)Uy2 rx5k8e PEw*e-');
 
 
 === unedited notes from AI ===
