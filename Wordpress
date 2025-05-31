@@ -1,0 +1,108 @@
+Installing WordPress with a LAMP stack on Debian 12
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install apache2 -y
+    sudo apt install mariadb-server mariadb-client -y
+    sudo mysql_secure_installation
+    sudo apt install php libapache2-mod-php php-mysql php-cli php-fpm php-json php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-intl php-zip php-curl -y
+
+    sudo a2enmod php8.2 # Replace 8.x with your installed PHP version
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+Create a MariaDB Database for WordPress:
+Log in to MariaDB.
+    sudo mysql -u root -p
+
+    CREATE DATABASE wordpress_db;
+    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+    FLUSH PRIVILEGES;
+    EXIT;
+
+    CREATE DATABASE wordpress_db;
+    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+    FLUSH PRIVILEGES;
+    EXIT;
+
+
+
+=== unedited notes from AI ===
+
+Installing WordPress with a LAMP (Linux, Apache, MySQL/MariaDB, PHP) stack on Debian 12 involves several steps:
+1. Install the LAMP Stack:
+Update your system.
+Code
+
+    sudo apt update && sudo apt upgrade -y
+Install Apache.
+Code
+
+    sudo apt install apache2 -y
+Install MariaDB (or MySQL).
+Code
+
+    sudo apt install mariadb-server mariadb-client -y
+Secure MariaDB.
+Code
+
+    sudo mysql_secure_installation
+Follow the prompts to set a root password, remove anonymous users, disallow remote root login, and remove the test database. Install PHP and necessary extensions.
+Code
+
+    sudo apt install php libapache2-mod-php php-mysql php-cli php-fpm php-json php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-intl php-zip php-curl -y
+Enable Apache modules (if not already enabled):
+Code
+
+    sudo a2enmod php8.x # Replace 8.x with your installed PHP version
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+2. Create a MariaDB Database for WordPress:
+Log in to MariaDB.
+Code
+
+    sudo mysql -u root -p
+Enter the root password you set during mysql_secure_installation.
+Create a database and user for WordPress:
+Code
+
+    CREATE DATABASE wordpress_db;
+    CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+    GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+    FLUSH PRIVILEGES;
+    EXIT;
+Replace wordpress_db, wordpress_user, and your_strong_password with your desired values.
+3. Download and Configure WordPress:
+Download WordPress.
+Code
+
+    cd /tmp
+    wget https://wordpress.org/latest.tar.gz
+    tar -xzvf latest.tar.gz
+Move WordPress files to the Apache web root:
+Code
+
+    sudo mv wordpress /var/www/html/your_domain_name # Replace your_domain_name with your actual domain or desired directory name
+Set correct permissions.
+Code
+
+    sudo chown -R www-data:www-data /var/www/html/your_domain_name
+    sudo chmod -R 755 /var/www/html/your_domain_name
+Create WordPress configuration file.
+Code
+
+    cd /var/www/html/your_domain_name
+    sudo cp wp-config-sample.php wp-config.php
+Edit wp-config.php.
+Code
+
+    sudo nano wp-config.php
+Update the database details with the ones you created:
+Code
+
+    define( 'DB_NAME', 'wordpress_db' );
+    define( 'DB_USER', 'wordpress_user' );
+    define( 'DB_PASSWORD', 'your_strong_password' );
+Generate unique salts and keys from the WordPress API and paste them into wp-config.php.
+4. Complete WordPress Installation via Web Interface:
+Open your web browser and navigate to http://your_server_ip_address/your_domain_name (or http://your_domain_name if you configured a virtual host).
+Follow the on-screen instructions to complete the WordPress installation, including setting up the site title, admin username, password, and email.
