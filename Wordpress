@@ -31,13 +31,13 @@ WP_CHG = crafthoundgaming.com
 WP_OTH = overthehillstead.com
 
     CREATE DATABASE wp_chg_db;
-    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'z7hHyFLKnvQvgb3nvHPNtTgvG';
+    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'new_password';
     GRANT ALL PRIVILEGES ON wp_chg_db.* TO 'chg_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
 
     CREATE DATABASE wp_oth_db;
-    CREATE USER 'oth_user'@'localhost' IDENTIFIED BY 'TijVQcEhNx2bbfDtoXjc3Jk9H';
+    CREATE USER 'oth_user'@'localhost' IDENTIFIED BY 'new_password';
     GRANT ALL PRIVILEGES ON wp_oth_db.* TO 'oth_user'@'localhost';
     FLUSH PRIVILEGES;
     EXIT;
