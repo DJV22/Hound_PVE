@@ -1,5 +1,5 @@
 Installing WordPress with a LAMP stack on Debian 12
-make usre your datasets and mountpoints are created and verified
+make sure your datasets and mountpoints are created and verified
 
 create dataset for each domain with the following commands
     zfs create fileserver/crafthoundgaming
