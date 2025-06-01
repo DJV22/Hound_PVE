@@ -1,0 +1,72 @@
+ 3. Create your ZFS pools or Import them as needed
+
+To create your ZFS pool do the following
+
+Goto PVE - ZFS on the right column, select create zfs from top right and complete information
+
+Name - use your desired name
+I used the following
+first add backups
+second add media
+compression on by default
+ashift 12 by default
+Raid level I chose RAIDZ (My config breakdown = 3 20TB disk 1 parity 2 actual drives equaling 40TB of storage. If 1 disk fails you can recover data)
+Do not enable firewall on any containers because it will interfere with portfowarding and gateway we currently have
+Adding datasets to match planned file structure configuration from the PVE shell console - for tank-backups use the following command to create a zfs dataset for ProxMox storage
+
+zfs create backups/vz This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go.
+Once created you can add it to ProxMox storage by following these steps
+REMOVE Backups zfs if it exist prior to adding backups directory
+ID backups, Directory /backups/vz
+On Datacenter:Storage use the Add button and select Directory.
+Give it an ID of backups and the directory is /backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
+We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
+Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
+If "Snippets" come into use, they will be small.
+local-zfs pool should only have disk image and containers.
+
+from the faster drive, and you can't save the options
+for "media" use the following commands - This creates the datasets to be used once the fileserver container is created.
+zfs create fileserver/home
+zfs create fileserver/share
+zfs create filerserver/media
+Use the command zfs list to ensure all datasets were properly created and ready for use.
+to import your previous ZFS pool you must use the following shell commands after ensuring the drives are connected and available
+
+In this case I used the following commands from pve console
+zpool import -f tank-fileserver
+zpool import -f tank-backups
+If the import fails you may have to use "zpool import -f (poolname) flag to force the import. This may need to be followed be the "zpool -e" flag to make it permanent.
+Use the command zfs list to ensure all datasets were properly imported and ready for use.
+Once imported you can add it to ProxMox storage by following these steps
+
+On Datacenter:Storage use the Add button and select Directory.
+
+Give it an ID of "tank-backups" and the directory is /tank-backups/vz. The Shared: box should be off, as there are no additional nodes in this setup.
+
+Select the Content: button and add VZDump backup file, Container template, and ISO image. This is where "whole-machine" backups, LXC Container templates, and bootable ISO images will go
+
+We want to turn OFF those options from "local", this removes this data from the root zfs storage (id:local)
+
+Select it and use "Edit" to deactivate those selections in Content:, and make sure "Snippets" is active.
+
+If "Snippets" come into use, they will be small.
+
+local-zfs pool should only have disk image and containers.
+
+local-zfs pool should only have disk image and containers.
+
+from the faster drive, and you can't save the options
+
+from the tank-fileserver container shell use the following commands -
+
+This creates the datasets to be used once the fileserver container is created.
+
+zfs create fileserver/home
+
+zfs create fileserver/share
+
+zfs create fileserver/media
+
+Use the command zfs list to ensure all datasets were properly created and ready for use.
