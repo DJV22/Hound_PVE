@@ -1,0 +1,15 @@
+Determining how to manage you personal website is an involved process. There are several things to be considered.
+  - What - The type of content you plan to share
+  - How - There are many different content management systems to choose from
+  - Where - Is it going to be local only, or are you going to be able to access this remotely.
+
+Determining these things along with other items will assist you in defining the task.
+For reference all of this content will be done on our ProxMox Virtual Environment (PVE). We will use an Turnkey Fileserver container. It will have the capability of serving mulitiple websites.
+Pre Install decisions
+  - Website name:
+  - Database name:
+  - Database user:
+  - Database password:
+
+WP Admin User:
+Wp Admin :
