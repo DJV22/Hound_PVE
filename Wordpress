@@ -31,8 +31,8 @@ WP_CHG = crafthoundgaming.com
 WP_OTH = overthehillstead.com
 
     CREATE DATABASE wp_chg_db;
-    CREATE USER 'chg_user'@'localhost' IDENTIFIED BY 'new_password';
-    GRANT ALL PRIVILEGES ON wp_chg_db.* TO 'chg_user'@'localhost';
+`CREATE DATABASE wp_chg_db;`
+`GRANT ALL ON wp_chg_db.* TO 'chg_user'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;`
     FLUSH PRIVILEGES;
     EXIT;
 
