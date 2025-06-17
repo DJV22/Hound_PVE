@@ -112,7 +112,14 @@ Decide on a container ID
 Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
 good practice to have a template based on initial design for ease of creating on the fly
 Using a turnkey LXC template for gameserver use the following settings
-32 GiB, 12 cores, 18 GB memory, and 6 GB swap. You can adjust according to your individual needs. All other settings should be default and should be confirmed
+
+`SETTINGS`
+- 32 GiB
+- 12 cores
+- 18 GB memory (18432)
+- 6 GB swap (6144) `You can adjust according to your individual needs`
+- All other settings should be default and should be confirmed
+
 Completing the install
 goto console login in as root, follow prompts to create server.
 I use the following settings
