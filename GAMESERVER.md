@@ -1,151 +1,57 @@
-Outline of build for a generic host
+Outline of build for a generic host for crafthoundgaming.com aka CraftHound Gaming
 ======
 
 ## Build Goal (Working Rules)
-   1. The purpose of this machine is as follows:
-      * Serve files as per [ORGANIZATION.md](../main/ORGANIZATION.md).
-      * Provide a given game on the host.
-      * Perform game data saves as appropriate.
-   2. Don't do *anything* or make changes if not *explicitly* required by the overall goal.
-   3. Before you begin with this example, see if the game server you wish to use is [supported](https://linuxgsm.com/servers/)!
+   1. The purpose of this machine is to provide a gameserver for crafthoundaming.com
+   2. The provided gameserver will be accessible online.
+   3. It will provide automatic daily backups and restarts as per outlined by cragfthoundgaming with discord webhook notifications.
+   4. This will be maintained by CraftHound Gaming on their local hardware.
 
-## Todo
-   1. Have a plan on the firewall.
-   2. When the fileserver is online, save the internal game backups.
-
-## Creation Actions
-   1. Decide on a name for the gameserver. I would suggest forethought on how likely it is you will be using
-      multiple sets of the same game. For instance, "Valheim" is one game server you could be using, but in
-      my case it is unlikely I will play "Valheim" as anything other than "Valheim", so I would name my server
-      based on that. In the case of Minecraft, I may have multiple Minecraft servers running at the same time,
-      each based on a "server name", and possibly even having wildly different mods and configurations. For
-      this instruction, I will build "whimpercraft", but the same technical details will apply except where
-      noted.
-   2. It would be good to make sure you have the "gameserver" template available. To do this, select
-      `Dataserver/pve/tank (pve):CT Templates`. There is a "Templates" button that will list many available
-      options. [Turnkey Linux](https://www.turnkeylinux.org) has a website full of details, discussion, and
-      notice of updates. Search, select, and download from the window.
-   4. In the top right, there is a `Create CT` button. On the window that comes up, I'm using a "CT ID:" of
-      500 (or higher, as needed) to keep the gameservers in the same general group order on the left. Select
-      the "tank" storage and the gameserver template.
-      For "Disk" size, 32 GiB would be plenty of space. You are welcome to decide to raise or lower this
-      according to how much disk space you think you will need.
-   5. I'm using 12 out of 16 cores so the game will run as smooth as possible. This can be adjusted downwards
-      based on your game experience. It is likely wise to leave a few cores left over for other systems even
-      if the game server were to pin the CPU so you can regain control.
-   6. There is an online [converter](https://www.convertunits.com/from/GiB/to/MiB) handy, and I will convert
-      18 GiB to 18432 MiB of memory and 6 GiB (6144 MiB) of swap. And again, your experience with your
-      server should inform you to adjust accordingly.
-   7. Network, DNS settings I'm using "defaults from what I already do." For this network, I use DHCP.
-   8. On the confirm page, look over all the settings to make sure you didn't miss anything and that it looks
-      "sane." You can toggle the "Start after created" button to have it going right away.
-      
-## Completing the install
-   1. If your router does not perform local DNS, now is a good time to add those into your local domain
-      configuration.
-   2. With the server running on your screen, you can select the ">_ Console" button to bring up a web
-      console terminal. Login with your root and password.
-   3. On login, you should enter a password for the `Gameuser` account. It does *not* need to be the same as
-      `root`. Twice to confirm a match.
-   4. Skip the Turnkey backup API unless you paid for a subscription.
-   5. Enter your email for server system messages. It will also register you for TurnkeyLinux security
-      allerts, but you can unsubscribe.
-   6. Allow security updates to install, and allow it to reboot, of course. Cool fact: If you do not close
-      the terminal session, it will warn you that it's closed briefly, then reconnect with a login. If you
-      know it's just rebooting, you need not open another terminal window!
-   8. After logging back in as `root`, you are prompted with, "For Advanced commandline config run:
-      confconsole."
-   9. From there, you are provided the connection ports and an option for the "Advanced Menu" to do further
-      configuration.
-   10. While the logfiles and other system clock functions for the server are driven by the "real" clock on
-       pve, and that clock runs on UTC time, you may want to set the "Region config" TZ data. It's possible
-       you want the server to think in your "local time" as it applies rather than UTC.
-   11. While there are other settings to explore, from the Advanced Menu you may select a particular
-       "Game server". Naturally, you can't "Update" the server until you "Select game", so do that.
-   12. You get a warning you may be prompted for further information, then continue.
-   13. For this example, select Minecraft (Java Edition). At that point installing the necessary dependencies
-       will begin. On this particular server, it requires a Server admin username, the "Wizard, Op" account
-       name you wish to use on the server. It will also ask for the server name.
-   14. We are told the server is successfully installed and we can connect. You can now quit the consoleconfig
-       running to get back to the prompt.
-
+## Creation Actions - Minecraft gameserver example
+   1. Create a container using the Turnkey Gameserver template `it should have been downloaded into the CT Templates directory`
+   `SETTINGS`
+   - CT ID: 500 `adjust accordingly`
+   - Hostname: houndcraft `adjust accordingly`
+   - Password: insertpasswordhere `make a unique password for the "root" user to log into console to complete creation`
+   - Disk size: 32 GiB `adjust accordingly`
+   - Cores: 12 `adjust accordingly`
+   - Memory: 18 GB (18432) `adjust accordingly`
+   - Swap: 6 GB (6144) `adjust accordingly`
+   - All other settings should be default and should be confirmed
+   2. Start the container and log into console to complete configurations.
+   - user: root
+   - password: insertpasswordhere `use the unique password created at installation`
+   - follow the steps of the confconsole script when it starts `if it does not start type in "confconsole" into console
+      - You will configure a password for the "gameuser" account, install api-key if you have one, and update security settings along with providing an email for notifications if you choose. all of these settings are dependent on you specific use case. At the end of this you can install game servers configure timezone and network settings. using the confconsole command you can return and edit these at any time.
+   - Once you are complete the installation of a game server in this case we chose Minecraft:Java Edition, you can quit confconsole and returm to the console prompt.
+   3. Complete the install - I reccomend doing the update and upgrade commands just to be sure everything is up to date. `apt update && apt upgrade -y` 
 ## Starting the new game server
-   1. The command `ss -lnt` will show you if the server is actually running if you know what port to look for.
-      In this case, I'm expecting 25565 to be open, but it is not.
-   2. `sudo -i -u gameuser` will put you in as the "gameuser" account the games run from so you can explore.
-   3. `cd gameserver` puts you in the right directory. You do not need to use `./linuxgsm.sh`, you already did
-      that in the console configuration.
-   4. `./mcserver` brings up a menu of options. You can use the 1-3 letter combination to select from the
+   1. `sudo -i -u gameuser` will put you in as the "gameuser" account the games run from so you can explore.
+   2. `cd gameserver` puts you in the right directory.
+   3. `./mcserver` brings up a menu of options. You can use the 1-3 letter combination to select from the
       options offered, such as `./mcserver dt` to see current details about the game.
-   5. `./mcserver st` returns an error: "\[ FAIL \] Starting mcserver: Unable to start Whimpercraft"
-   6. Now would be a good time to make a snapshot before making changes so you can return to this configuration.
-      To do this, go back to `Datacenter/pve/whimpercraft:Backup`, then select the "Bacup now" button. The
-      defaults are fine, just use the "Backup" button offered.
-   7. With that safely in hand, we can explore changes and roll them back to this save point as needed.
-   8. Depending on the game server, you may have to ask questions for help outside the scope of this tutorial.
-      In this case, `~/gamesever/log/console` shows the current Java is not up to date with this version of
-      minecraft. According to the [Minecraft Wiki](https://minecraft.wiki/w/Java_Edition#System_requirements),
-      the current release of Minecraft uses Java 21. This will prevent the server from working, as the installed
-      java is 17, and a default package is not available to update at this time.
-   9. A debian package for Java21 is not currently available to me, so I will follow the instructions on the
-      [howto](https://computingforgeeks.com/install-java-jdk-or-openjdk-21-on-debian/) for that.
-      * `mkdir -p ~/Downloads && cd Downloads`
-      * Having moved the file in there, I follow the directions including tracing down which version of Java
-        is actually running so `java -version` returns `openjdk version "22.0.1" 2024-04-16`. This is an exercise
-        best left to the user, although I can provide help as needed, perhaps clarify here.
-      * The server *will* run at this point, but I need to follow further
-        [directions](https://github.com/GameServerManagers/LinuxGSM/discussions/3817) to run the Forge backup
-        I am using. Once I have made the suggested changes, the server runs as expected.
-   
-## The following steps are optional.
-   1. [^1]...
+   4. Now would be a good time to backup your work so you have a stable configuration to return if any issues arise. To do this, follow these steps
+   - In this container go to backups in the center column under. `It should be approximately 7 below "Summary"`
+   - Then select the "Bacup now" button. `The defaults are fine, this allows us to roll back to this save point as needed`
+## Java Install 
+`this step may not be needed or slightly differ depending on the version of minecraft you are using`
+   1. For this version of Minecraft Server `1.21.5` Java 21 will need to be installed. use the commands below or search for help online to make sure you have the correct version needed.
+   - `wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb`
+   - `dpkg -i jdk-21_linux-x64_bin.deb`
+   - `java -version` will veriyfy it was downloaded and installed properly
+   2. The server is now configure and ready to run. You can use the `./mcserver` commands while logged in as gameuser `sudo -u gameuser -i` and going to the gameserver directory `cd gameserver`
+## Optional Steps
+`Currently the houndcraft container is running a Minecraft: Java Edition server. You can edit server properties files and lgsm configs to make the server fit your needs. Seek reference material online to assist with that.
+- Follow the steps to create additional containers for specific servers changing the appropriate settings along the way.[^1]
+- 
 
       
 ## Footnotes:
-   [^1]: Example footnote.
-======
-These are notes that i want to save for review. The goal is to edit these notes and make them accurate as to how to create a gameserver container, with the default settings. This will later become the clone/template for all gameserver containers, needing minimal changes to become a seperate functional container.
-======
-   Gameserver creation
+   [^1]: Example Minecraft Servers - Fabric, Forge, Neoforge, for modded servers.
 
-Decide on a container ID
-Decide gameserver name - usually based on what game it is for and how the game is played ex. Minecraft survival = houndcraft, ex. minecraft create mod = houndcreate or another option is 1 gameserver per game (minecraft, Palworld, Ark) and each gameserver can have different instances run based on desires.
-good practice to have a template based on initial design for ease of creating on the fly
-Using a turnkey LXC template for gameserver use the following settings
-
-`SETTINGS`
-- 32 GiB
-- 12 cores
-- 18 GB memory (18432)
-- 6 GB swap (6144) `You can adjust according to your individual needs`
-- All other settings should be default and should be confirmed
-
-Completing the install
-goto console login in as root, follow prompts to create server.
-I use the following settings
-(insert settings here)
-After logging back in as root, you are prompted with, "For Advanced commandline config run: confconsole."
-From there, you are provided the connection ports and an option for the "Advanced Menu" to do further configuration.
-While the logfiles and other system clock functions for the server are driven by the "real" clock on pve, and that clock runs on UTC time, you may want to set the "Region config" TZ data. It's possible you want the server to think in your "local time" as it applies rather than UTC.
-While there are other settings to explore, from the Advanced Menu you may select a particular "Game server". Naturally, you can't "Update" the server until you "Select game", so do that.
-You get a warning you may be prompted for further information, then continue.
-For this example, select Minecraft (Java Edition). At that point installing the necessary dependencies will begin. On this particular server, it requires a Server admin username, the "Wizard, Op" account name you wish to use on the server. It will also ask for the server name.
-We are told the server is successfully installed and we can connect. You can now quit the consoleconfig running to get back to the prompt.
-Starting the new game server
-The command ss -lnt will show you if the server is actually running if you know what port to look for. In this case, I'm expecting 25565 to be open, but it is not.
-sudo -i -u gameuser will put you in as the "gameuser" account the games run from so you can explore.
-cd gameserver puts you in the right directory. You do not need to use ./linuxgsm.sh, you already did that in the console configuration.
-./mcserver brings up a menu of options. You can use the 1-3 letter combination to select from the options offered, such as ./mcserver dt to see current details about the game.
-./mcserver st returns an error: "[ FAIL ] Starting mcserver: Unable to start Whimpercraft"
-Now would be a good time to make a snapshot before making changes so you can return to this configuration. To do this, go back to Datacenter/pve/whimpercraft:Backup, then select the "Bacup now" button. The defaults are fine, just use the "Backup" button offered
-With that safely in hand, we can explore changes and roll them back to this save point as needed.
-Depending on the game server, you may have to ask questions for help outside the scope of this tutorial. In this case, ~/gamesever/log/console shows the current Java is not up to date with this version of minecraft. According to the Minecraft Wiki, the current release of Minecraft uses Java 21. This will prevent the server from working, as the installed java is 17, and a default package is not available to update at this time.
-A debian package for Java21 is not currently available to me, so I will follow the instructions on the howto for that.
-mkdir -p ~/Downloads && cd Downloads
-Having moved the file in there, I follow the directions including tracing down which version of Java is actually running so java -version returns openjdk version "22.0.1" 2024-04-16. This is an exercise best left to the user, although I can provide help as needed, perhaps clarify here.
-The server will run at this point, but I neto follow further directions to run the Forge backup I am using. Once I have made the suggested changes, the server runs as expected.
-SET options for booting after restart and boot order for each container / virtual machine
-
-confconsole commmand gets us to advanced menu in container
-
+## Todo
+   1. setup daily backups and server restarts
+   2. allocate thos backups to the fileserver location
+   3. provide a fail safe restart if server issues arise
+       
 
