@@ -19,39 +19,39 @@
 - **Decide hosting application**: WordPress, Nginx, Apache, etc.  
 
 - **Create datasets for website directories**
-\```bash
+```bash
 zfs create tank-fileserver/crafthoundgaming
 zfs create tank-fileserver/overthehillstead
-\```
+```
 
 - **Mount datasets inside the fileserver container**
-\```bash
+```bash
 pct set 101 -mp3 /tank-fileserver/crafthoundgaming,mp=/srv/crafthoundgaming
 pct set 101 -mp4 /tank-fileserver/overthehillstead,mp=/srv/overthehillstead
-\```
+```
 
 - **Create directories for each domain**
-\```bash
+```bash
 mkdir -p /srv/crafthoundgaming
 mkdir -p /srv/overthehillstead
 chmod -R 755 /srv/crafthoundgaming
 chmod -R 755 /srv/overthehillstead
-\```
+```
 
 - **Set up test index pages**
-\```bash
+```bash
 echo "This site is crafthoundgaming" > /srv/crafthoundgaming/index.html
 echo "This site is overthehillstead" > /srv/overthehillstead/index.html
-\```
+```
 
 - **Copy Apache default config for each site**
-\```bash
+```bash
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/crafthoundgaming.conf
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/overthehillstead.conf
-\```
+```
 
 - **Edit virtual host configs**
-\```text
+```text
 # Example: /etc/apache2/sites-available/crafthoundgaming.conf
 <VirtualHost *:80>
     ServerName crafthoundgaming.com
@@ -60,55 +60,55 @@ cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/ov
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-\```
+```
 
 - **Enable configs and restart Apache**
-\```bash
+```bash
 a2ensite crafthoundgaming.conf
 a2ensite overthehillstead.conf
 systemctl restart apache2
-\```
+```
 
 ---
 
 ## 2️⃣ | Securing Websites with SSL
 
 - **Install Certbot**
-\```bash
+```bash
 apt install certbot python3-certbot-apache -y
-\```
+```
 
 - **Verify Apache virtual host configuration**
-\```bash
+```bash
 apache2ctl configtest
 systemctl reload apache2
-\```
+```
 
 - **Obtain SSL certificate**
-\```bash
+```bash
 certbot --apache
-\```
+```
 
 - **Test automatic renewal**
-\```bash
+```bash
 systemctl status certbot.timer
 certbot renew --dry-run
-\```
+```
 
 ---
 
 ## 3️⃣ | Installing MariaDB
 
 - **Install MariaDB server**
-\```bash
+```bash
 apt update && apt upgrade -y
 apt install mariadb-server -y
-\```
+```
 
 - **Secure installation**
-\```bash
+```bash
 mysql_secure_installation
-\```
+```
 
 Follow the prompts to remove anonymous users, disable remote root login, and remove test databases.
 
@@ -117,22 +117,22 @@ Follow the prompts to remove anonymous users, disable remote root login, and rem
 ## 4️⃣ | Installing WordPress (Optional)
 
 - **Set up database for WordPress**
-\```bash
+```bash
 mysql -u root -p
 CREATE DATABASE wordpress;
 GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost' IDENTIFIED BY 'strongpassword';
 FLUSH PRIVILEGES;
 EXIT;
-\```
+```
 
 - **Download and configure WordPress**
-\```bash
+```bash
 cd /srv/crafthoundgaming
 wget https://wordpress.org/latest.tar.gz
 tar -xzf latest.tar.gz
 mv wordpress/* .
 rm -rf wordpress latest.tar.gz
-\```
+```
 
 - **Update `wp-config.php` with database credentials**  
 
@@ -144,26 +144,26 @@ rm -rf wordpress latest.tar.gz
 - **Use turnkey LXC template**  
 - **Configure CPU, RAM, and storage**  
 - **Complete console installation**
-\```bash
+```bash
 pct enter <gameContainerID>
 # Follow prompts for game server setup
-\```
+```
 
 - **Set server timezone**
-\```bash
+```bash
 dpkg-reconfigure tzdata
-\```
+```
 
 - **Start and monitor the game server**
-\```bash
+```bash
 ./mcserver st
 ./mcserver dt
-\```
+```
 
 - **Create snapshot before making changes**
-\```bash
+```bash
 pct snapshot <gameContainerID> pre-update
-\```
+```
 
 ---
 
