@@ -1,0 +1,366 @@
+\# Proxmox Container Setup Guide
+
+\# Step 1 | Install Proxmox VE
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* Proxmox Host  
+\> \*\*Goal:\*\* Install and prepare the Proxmox VE environment
+
+---
+
+## 📘 Goals
+
+- Install Proxmox VE on your host  
+- Configure ZFS and storage for containers  
+- Prepare the host for ongoing maintenance and remote access  
+
+---
+
+### 1️⃣ | Download & Install
+
+```bash
+# Flash ISO to USB
+# Install Proxmox selecting your desired options
+```
+
+- Example hardware: UM890 PRO, 96GB RAM, 2x4TB SSD (ZFS RAID1)  
+- Hostname: pve.local  
+- Access via browser: https://yourmachineip:8006  
+
+### 2️⃣ | Optional Shell Customization
+
+```bash
+# Edit bashrc for color and aliases
+nano ~/.bashrc
+# After edits, reload bash
+source ~/.bashrc
+```
+
+Next → Step 2: Repository Setup & SSH Hardening
+
+\# Step 2 | Repository Setup & SSH Hardening
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* Proxmox Host  
+\> \*\*Goal:\*\* Configure package repositories and secure SSH
+
+---
+
+## 📘 Goals
+
+- Configure "no subscription" repositories  
+- Update all packages  
+- Harden SSH access for root and users  
+
+---
+
+### 1️⃣ | Repositories
+
+```bash
+# Disable enterprise repos
+# Enable no-subscription repos
+pveam update
+apt update && apt full-upgrade -y
+```
+
+### 2️⃣ | SSH Hardening
+
+```bash
+# Edit sshd_config
+PermitRootLogin no
+PasswordAuthentication no
+PermitTunnel yes
+# Restart SSH
+systemctl restart ssh
+```
+
+```bash
+# Add new admin user
+adduser crafthound
+usermod -aG sudo crafthound
+```
+
+Next → Step 3: Container Network Configuration & Storage Setup
+
+\# Step 3 | Container Network Configuration & Storage Setup
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* Proxmox Host & Containers  
+\> \*\*Goal:\*\* Configure network, ZFS pools, datasets, and storage mappings
+
+---
+
+## 📘 Goals
+
+- Create or import ZFS pools  
+- Map datasets to containers  
+- Prepare backups and media storage  
+
+---
+
+### 1️⃣ | ZFS Pool Creation
+
+```bash
+# Create datasets
+zfs create backups/vz
+zfs create fileserver/home
+zfs create fileserver/share
+zfs create fileserver/media
+# Verify
+zfs list
+```
+
+### 2️⃣ | Import Existing Pools
+
+```bash
+zpool import -f tank-fileserver
+zpool import -f tank-backups
+zfs list
+```
+
+### 3️⃣ | Map Datasets to Containers
+
+```bash
+pct set 101 -mp0 /tank-fileserver/home,mp=/home
+pct set 101 -mp1 /tank-fileserver/share,mp=/share
+pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media
+```
+
+Next → Step 4: Container Security, Updates & Monitoring
+
+\# Step 4 | Container Security, Updates & Monitoring
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* Debian 13 (Bookworm) Containers & Proxmox Hosts  
+\> \*\*Goal:\*\* Keep containers secure, up-to-date, and monitored
+
+---
+
+## 📘 Goals
+
+- Keep containers and Proxmox host **up-to-date**  
+- Apply **security hardening** for containers and users  
+- Enable **monitoring** for resource usage and logs  
+- Configure **automatic updates or notifications**
+
+---
+
+### 1️⃣ | System Updates
+
+#### Update Proxmox Host
+
+```bash
+apt update && apt full-upgrade -y
+```
+
+#### Update Debian LXC Containers
+
+```bash
+pct enter <containerID>
+apt update && apt upgrade -y
+apt autoremove -y
+```
+
+#### Optional: Enable Unattended Security Updates
+
+```bash
+apt install unattended-upgrades -y
+dpkg-reconfigure unattended-upgrades
+```
+
+### 2️⃣ | User and Permission Security
+
+- **Limit root login:** Already done in Step 2 (SSH key-based only)  
+
+- **Create admin user inside container:**
+
+```bash
+adduser familyadmin
+usermod -aG sudo familyadmin
+```
+
+- **Set file permissions for sensitive directories:**
+
+```bash
+chown -R root:root /etc /var/www
+chmod -R 700 /etc
+chmod -R 750 /var/www
+```
+
+- **Remove unnecessary users:**
+
+```bash
+deluser --remove-home unwanteduser
+```
+
+### 3️⃣ | Fail2Ban & Firewall (Optional, Recommended)
+
+```bash
+# Install Fail2Ban
+apt install fail2ban -y
+systemctl enable --now fail2ban
+
+# Install UFW Firewall
+apt install ufw -y
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw enable
+```
+
+### 4️⃣ | Resource Monitoring
+
+```bash
+# Install monitoring tools inside container
+apt install htop iftop iotop -y
+htop
+
+# Check logs
+journalctl -xe
+tail -f /var/log/syslog
+```
+
+### 5️⃣ | Snapshots and Backups
+
+```bash
+pct snapshot <containerID> pre-update
+```
+
+### 6️⃣ | Optional: Automatic Update Notifications
+
+```bash
+apt install apticron -y
+nano /etc/apticron/apticron.conf
+```
+
+- Configure admin email to receive alerts
+
+✅ Summary  
+Fully patched containers, SSH key-only access, Fail2Ban + firewall protections, resource monitoring, snapshots & backups
+
+Next → Step 5: Application Setup & Configuration
+
+\# Step 5 | Application Setup & Configuration
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* LXC Containers & Proxmox Hosts  
+\> \*\*Goal:\*\* Deploy applications and websites
+
+---
+
+## 📘 Goals
+
+- Configure LAMP/LEMP or other applications  
+- Prepare container directories and permissions  
+- Setup Apache/Nginx virtual hosts  
+- Enable SSL via Certbot/Let's Encrypt  
+
+---
+
+### 1️⃣ | Prepare Directories
+
+```bash
+mkdir -p /srv/crafthoundgaming
+mkdir -p /srv/overthehillstead
+chmod -R 755 /srv/crafthoundgaming
+chmod -R 755 /srv/overthehillstead
+```
+
+### 2️⃣ | Setup Apache Virtual Hosts
+
+```bash
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/crafthoundgaming.conf
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/overthehillstead.conf
+```
+
+- Edit `.conf` files for ServerName, ServerAlias, logs, etc.
+- Enable configs with symbolic links
+- Restart Apache
+
+### 3️⃣ | Enable SSL with Certbot
+
+```bash
+apt install certbot python3-certbot-apache
+certbot --apache
+systemctl reload apache2
+```
+
+Next → Step 6: Game Servers & Optional Services
+
+\# Step 6 | Game Servers & Optional Services
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* Game Server Containers  
+\> \*\*Goal:\*\* Deploy and configure game servers
+
+---
+
+### 1️⃣ | Game Server Creation
+
+```bash
+# Create container for Minecraft/other games
+# Assign storage, CPU, RAM, swap
+# Configure ports
+```
+
+### 2️⃣ | Install Dependencies & Configure Server
+
+```bash
+# Log in as gameuser
+sudo -i -u gameuser
+cd gameserver
+./mcserver st
+```
+
+- Update Java if required  
+- Apply server-specific configs  
+- Create snapshot before making changes
+
+Next → Step 7: Final Security Audit & Maintenance Plan
+
+\# Step 7 | Final Security Audit & Maintenance Plan
+\> \*\*Part of:\*\* Proxmox Container Setup Guide  
+\> \*\*Applies to:\*\* All Containers & Host  
+\> \*\*Goal:\*\* Ensure system integrity and ongoing maintenance
+
+---
+
+## 📘 Goals
+
+- Verify updates and patches  
+- Confirm backups and snapshots  
+- Review SSH, firewall, Fail2Ban settings  
+- Document procedures for future maintenance
+
+---
+
+### 1️⃣ | Audit Updates
+
+```bash
+apt update && apt upgrade -y
+apt autoremove -y
+```
+
+### 2️⃣ | Check Backups & Snapshots
+
+```bash
+pct list
+zfs list
+```
+
+### 3️⃣ | Review Security Settings
+
+```bash
+# SSH
+cat /etc/ssh/sshd_config
+# Fail2Ban
+systemctl status fail2ban
+# Firewall
+ufw status
+```
+
+### 4️⃣ | Document Maintenance Schedule
+
+- Weekly updates and upgrades  
+- Monthly snapshot checks  
+- Quarterly security audit
+
+✅ Summary  
+System fully secured, monitored, and ready for regular maintenance.  
+Backups, snapshots, and audit procedures documented for long-term stability.
