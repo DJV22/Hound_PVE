@@ -15,8 +15,8 @@
 ---
 
 ### 1️⃣ | System Updates
----
-#### Update Proxmox Host
+
+### Update Proxmox Host
 ```bash
 apt update && apt full-upgrade -y
 
