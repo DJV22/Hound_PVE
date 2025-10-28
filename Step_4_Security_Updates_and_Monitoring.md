@@ -17,22 +17,22 @@
 ## 1️⃣ | System Updates
 
 ### Update Proxmox Host
-\```bash
+```bash
 apt update && apt full-upgrade -y
-\```
+```
 
 ### Update Debian LXC Containers
-\```bash
+```bash
 pct enter <containerID>
 apt update && apt upgrade -y
 apt autoremove -y
-\```
+```
 
 ### Optional: Enable Unattended Security Updates
-\```bash
+```bash
 apt install unattended-upgrades -y
 dpkg-reconfigure unattended-upgrades
-\```
+```
 
 ---
 
@@ -41,35 +41,35 @@ dpkg-reconfigure unattended-upgrades
 - **Limit root login:** Already done in Step 2 (SSH key-based only)
 
 - **Create admin user inside container**
-\```bash
+```bash
 adduser familyadmin
 usermod -aG sudo familyadmin
-\```
+```
 
 - **Set file permissions for sensitive directories**
-\```bash
+```bash
 chown -R root:root /etc /var/www
 chmod -R 700 /etc
 chmod -R 750 /var/www
-\```
+```
 
 - **Remove unnecessary users**
-\```bash
+```bash
 deluser --remove-home unwanteduser
-\```
+```
 
 ---
 
 ## 3️⃣ | Fail2Ban & Firewall (Optional, Recommended)
 
 **Fail2Ban**
-\```bash
+```bash
 apt install fail2ban -y
 systemctl enable --now fail2ban
-\```
+```
 
 **UFW Firewall**
-\```bash
+```bash
 apt install ufw -y
 ufw default deny incoming
 ufw default allow outgoing
@@ -77,7 +77,7 @@ ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw enable
-\```
+```
 
 ---
 
@@ -86,25 +86,25 @@ ufw enable
 - **Proxmox GUI:** Check CPU, RAM, disk, and network usage per container
 
 - **Inside containers: Install monitoring tools**
-\```bash
+```bash
 apt install htop iftop iotop -y
 htop
-\```
+```
 
 - **Check system logs regularly**
-\```bash
+```bash
 journalctl -xe
 tail -f /var/log/syslog
-\```
+```
 
 ---
 
 ## 5️⃣ | Snapshots and Backups
 
 - **Snapshots before major changes**
-\```bash
+```bash
 pct snapshot <containerID> pre-update
-\```
+```
 
 - **Regular backup schedule** (from Step 3) ensures recovery if updates fail
 
@@ -113,10 +113,10 @@ pct snapshot <containerID> pre-update
 ## 6️⃣ | Optional: Automatic Update Notifications
 
 - **Install apticron inside container**
-\```bash
+```bash
 apt install apticron -y
 nano /etc/apticron/apticron.conf
-\```
+```
 
 - Configure admin email in the file to receive alerts
 
