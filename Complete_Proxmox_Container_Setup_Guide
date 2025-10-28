@@ -1,9 +1,9 @@
-\# Proxmox Container Setup Guide
+# Proxmox Container Setup Guide
 
-\# Step 1 | Install Proxmox VE
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* Proxmox Host  
-\> \*\*Goal:\*\* Install and prepare the Proxmox VE environment
+# Step 1 | Install Proxmox VE
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** Proxmox Host  
+> **Goal:** Install and prepare the Proxmox VE environment
 
 ---
 
@@ -37,10 +37,10 @@ source ~/.bashrc
 
 Next → Step 2: Repository Setup & SSH Hardening
 
-\# Step 2 | Repository Setup & SSH Hardening
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* Proxmox Host  
-\> \*\*Goal:\*\* Configure package repositories and secure SSH
+# Step 2 | Repository Setup & SSH Hardening
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** Proxmox Host  
+> **Goal:** Configure package repositories and secure SSH
 
 ---
 
@@ -80,10 +80,10 @@ usermod -aG sudo crafthound
 
 Next → Step 3: Container Network Configuration & Storage Setup
 
-\# Step 3 | Container Network Configuration & Storage Setup
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* Proxmox Host & Containers  
-\> \*\*Goal:\*\* Configure network, ZFS pools, datasets, and storage mappings
+# Step 3 | Container Network Configuration & Storage Setup
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** Proxmox Host & Containers  
+> **Goal:** Configure network, ZFS pools, datasets, and storage mappings
 
 ---
 
@@ -125,10 +125,10 @@ pct set 101 -mp2 /tank-fileserver/media,mp=/srv/media
 
 Next → Step 4: Container Security, Updates & Monitoring
 
-\# Step 4 | Container Security, Updates & Monitoring
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* Debian 13 (Bookworm) Containers & Proxmox Hosts  
-\> \*\*Goal:\*\* Keep containers secure, up-to-date, and monitored
+# Step 4 | Container Security, Updates & Monitoring
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** Debian 13 (Bookworm) Containers & Proxmox Hosts  
+> **Goal:** Keep containers secure, up-to-date, and monitored
 
 ---
 
@@ -238,10 +238,10 @@ Fully patched containers, SSH key-only access, Fail2Ban + firewall protections, 
 
 Next → Step 5: Application Setup & Configuration
 
-\# Step 5 | Application Setup & Configuration
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* LXC Containers & Proxmox Hosts  
-\> \*\*Goal:\*\* Deploy applications and websites
+# Step 5 | Application Setup & Configuration
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** LXC Containers & Proxmox Hosts  
+> **Goal:** Deploy applications and websites
 
 ---
 
@@ -284,10 +284,10 @@ systemctl reload apache2
 
 Next → Step 6: Game Servers & Optional Services
 
-\# Step 6 | Game Servers & Optional Services
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* Game Server Containers  
-\> \*\*Goal:\*\* Deploy and configure game servers
+# Step 6 | Game Servers & Optional Services
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** Game Server Containers  
+> **Goal:** Deploy and configure game servers
 
 ---
 
@@ -314,10 +314,10 @@ cd gameserver
 
 Next → Step 7: Final Security Audit & Maintenance Plan
 
-\# Step 7 | Final Security Audit & Maintenance Plan
-\> \*\*Part of:\*\* Proxmox Container Setup Guide  
-\> \*\*Applies to:\*\* All Containers & Host  
-\> \*\*Goal:\*\* Ensure system integrity and ongoing maintenance
+# Step 7 | Final Security Audit & Maintenance Plan
+> **Part of:** Proxmox Container Setup Guide  
+> **Applies to:** All Containers & Host  
+> **Goal:** Ensure system integrity and ongoing maintenance
 
 ---
 
