@@ -15,7 +15,7 @@
 ---
 
 ### 1️⃣ | System Updates
-
+---
 #### Update Proxmox Host
 ```bash
 apt update && apt full-upgrade -y
@@ -31,8 +31,8 @@ apt autoremove -y
 ```bash
 apt install unattended-upgrades -y
 dpkg-reconfigure unattended-upgrades
-
-## 2️⃣ | User and Permission Security
+---
+### 2️⃣ | User and Permission Security
 
 - **Limit root login:** Already done in Step 2 (SSH key-based only)
 
