@@ -19,33 +19,36 @@
 #### Update Proxmox Host
 ```bash
 apt update && apt full-upgrade -y
-Update Debian LXC Containers
-bash
-Copy code
+
+### Update Debian LXC Containers
+```bash
 pct enter <containerID>
 apt update && apt upgrade -y
 apt autoremove -y
-Optional: Enable unattended security updates
-bash
-Copy code
+
+### Optional: Enable Unattended Security Updates
+
+```bash
 apt install unattended-upgrades -y
 dpkg-reconfigure unattended-upgrades
-2️⃣ | User and Permission Security
-Limit root login: Already done in Step 2 (SSH key-based only)
 
-Create admin user inside container:
+## 2️⃣ | User and Permission Security
 
-bash
-Copy code
+- **Limit root login:** Already done in Step 2 (SSH key-based only)
+
+- **Create admin user inside container:**
+
+```bash
 adduser familyadmin
 usermod -aG sudo familyadmin
-Set file permissions for sensitive directories:
 
-bash
-Copy code
+**Set file permissions for sensitive directories:**
+
+```bash
 chown -R root:root /etc /var/www
 chmod -R 700 /etc
 chmod -R 750 /var/www
+
 Remove unnecessary users:
 
 bash
